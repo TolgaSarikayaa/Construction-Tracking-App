@@ -178,7 +178,7 @@ class LoginViewController: UIViewController {
             
             let user = result.user
             print("Logged in User: \(user)")
-            //strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+            
         }
          
 
