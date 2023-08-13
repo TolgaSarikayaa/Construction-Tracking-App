@@ -190,9 +190,9 @@
 		145E69932A40B91D008FB01C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				145E69632A40B876008FB01C /* ViewController.swift */,
-				14B4F6132A4C4D590022F5DF /* AddStructureViewController.swift */,
 				14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */,
+				14B4F6132A4C4D590022F5DF /* AddStructureViewController.swift */,
+				145E69632A40B876008FB01C /* ViewController.swift */,
 				145E69922A40B911008FB01C /* Login */,
 			);
 			path = Controllers;

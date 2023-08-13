@@ -12,12 +12,14 @@ class PlacesTableViewController: UITableViewController {
     var placeNameArray = [String]()
     var placeIdArray = [String]()
     var selectedPlaceId = ""
+    
+    var test = ["test","test2","test3"]
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Places"
+      
         
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
 
@@ -25,19 +27,24 @@ class PlacesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+   
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return test.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        var content = cell.defaultContentConfiguration()
+        content.text = test[indexPath.row]
+        cell.contentConfiguration = content
+        return cell
     }
     
     @objc func addButtonClicked() {
-        
-    }
+        performSegue(withIdentifier: "toAddStructure", sender: nil)
+   }
 
     
 }
