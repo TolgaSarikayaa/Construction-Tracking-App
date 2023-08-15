@@ -200,9 +200,11 @@ class LoginViewController: UIViewController {
     
     
     @objc private func didTapRegister() {
-        let vc = RegisterViewController()
-        vc.title = "Create Account"
-        navigationController?.pushViewController(vc, animated: true)
+        performSegue(withIdentifier: "toRegister", sender: nil)
+        
+        //let vc = RegisterViewController()
+        //vc.title = "Create Account"
+        //navigationController?.pushViewController(vc, animated: true)
     }
     
 

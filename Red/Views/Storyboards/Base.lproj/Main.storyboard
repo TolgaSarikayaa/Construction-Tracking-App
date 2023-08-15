@@ -21,6 +21,7 @@
                     <navigationItem key="navigationItem" id="SRD-cI-sx2"/>
                     <connections>
                         <segue destination="hqm-bp-ROp" kind="presentation" identifier="AddPlace" modalPresentationStyle="fullScreen" id="AdT-ev-iTt"/>
+                        <segue destination="AeO-9F-KQr" kind="show" identifier="toRegister" id="QqM-C2-Xlg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -134,7 +135,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qV-in-efs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1189" y="738"/>
+            <point key="canvasLocation" x="3016" y="689"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="CqZ-NY-tGK">
+            <objects>
+                <viewController id="AeO-9F-KQr" customClass="RegisterViewController" customModule="Red" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BSx-4N-Lg6">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="lmS-IZ-BPJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hlT-gZ-Z4C"/>
+                    <connections>
+                        <segue destination="hqm-bp-ROp" kind="presentation" identifier="AddPlace2" modalPresentationStyle="fullScreen" id="xVV-ZD-TOL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oyn-Sv-4XW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189" y="799"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Elg-B0-UbR">
@@ -152,7 +172,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nj8-WY-Cye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="265" y="738"/>
+            <point key="canvasLocation" x="2178" y="689"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qyg-oy-6Yb">
@@ -192,6 +212,9 @@
             <point key="canvasLocation" x="2156" y="-2"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xVV-ZD-TOL"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="select" width="264" height="300"/>
         <systemColor name="systemBackgroundColor">

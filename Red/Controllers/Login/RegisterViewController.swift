@@ -109,12 +109,12 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Register"
+        title = "Creat Account"
         view.backgroundColor = .white
         
        
         
-        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+       registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
         emailField.delegate = self
         passwordField.delegate = self
@@ -172,9 +172,10 @@ class RegisterViewController: UIViewController {
               !firstName.isEmpty,
               !lastName.isEmpty,
               password.count >= 6 else {
-            alertUserLoginError()
+              alertUserLoginError()
             return
         }
+        
         
         // Firebase Login
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -188,8 +189,8 @@ class RegisterViewController: UIViewController {
         }
         
         
-        performSegue(withIdentifier: "AddPlace", sender: nil)
-
+        
+       didTapRegister()
         
         
     }
@@ -210,9 +211,11 @@ class RegisterViewController: UIViewController {
     
     
     @objc private func didTapRegister() {
-        let vc = RegisterViewController()
-        vc.title = "Create Account"
-        navigationController?.pushViewController(vc, animated: true)
+        performSegue(withIdentifier: "AddPlace2", sender: nil)
+       //let vc = PlacesTableViewController()
+        //navigationController?.pushViewController(vc, animated: false)
+        
+        
     }
     
 

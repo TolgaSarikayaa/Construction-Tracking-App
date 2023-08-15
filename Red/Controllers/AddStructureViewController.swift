@@ -24,9 +24,9 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         title = "Add Structure"
         view.backgroundColor = .white
         
-        placeImage.isUserInteractionEnabled = true
+        placeImage?.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
-        placeImage.addGestureRecognizer(gestureRecognizer)
+        placeImage?.addGestureRecognizer(gestureRecognizer)
        
     }
     
