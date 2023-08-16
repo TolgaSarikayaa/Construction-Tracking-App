@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143FB9C82A8CE27500D432D8 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB9C72A8CE27500D432D8 /* MapVC.swift */; };
+		143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */; };
 		145E69602A40B876008FB01C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E695F2A40B876008FB01C /* AppDelegate.swift */; };
 		145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69612A40B876008FB01C /* SceneDelegate.swift */; };
 		145E69642A40B876008FB01C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69632A40B876008FB01C /* ViewController.swift */; };
@@ -53,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		0F4EF520AB08AEA152D3547E /* Pods-RedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedTests.debug.xcconfig"; path = "Target Support Files/Pods-RedTests/Pods-RedTests.debug.xcconfig"; sourceTree = "<group>"; };
+		143FB9C72A8CE27500D432D8 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		145E695C2A40B876008FB01C /* Red.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Red.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145E695F2A40B876008FB01C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		145E69612A40B876008FB01C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 			children = (
 				14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */,
 				14B4F6132A4C4D590022F5DF /* AddStructureViewController.swift */,
+				143FB9C72A8CE27500D432D8 /* MapVC.swift */,
+				143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */,
 				145E69632A40B876008FB01C /* ViewController.swift */,
 				145E69922A40B911008FB01C /* Login */,
 			);
@@ -495,6 +501,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				145E699E2A40B9C9008FB01C /* LoginViewController.swift in Sources */,
+				143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */,
+				143FB9C82A8CE27500D432D8 /* MapVC.swift in Sources */,
 				145E699A2A40B9A7008FB01C /* Extensions.swift in Sources */,
 				145E69642A40B876008FB01C /* ViewController.swift in Sources */,
 				145E69A22A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
