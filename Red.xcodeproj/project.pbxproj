@@ -223,6 +223,8 @@
 		145E69962A40B946008FB01C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				145E69992A40B9A7008FB01C /* Extensions.swift */,
+				145E699B2A40B9B4008FB01C /* DatabaseManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -232,8 +234,6 @@
 			children = (
 				145E695F2A40B876008FB01C /* AppDelegate.swift */,
 				145E69612A40B876008FB01C /* SceneDelegate.swift */,
-				145E69992A40B9A7008FB01C /* Extensions.swift */,
-				145E699B2A40B9B4008FB01C /* DatabaseManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

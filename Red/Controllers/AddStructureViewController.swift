@@ -22,12 +22,13 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         super.viewDidLoad()
 
         title = "Add Structure"
-        view.backgroundColor = .white
+        //view.backgroundColor = .white
         
         placeImage?.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         placeImage?.addGestureRecognizer(gestureRecognizer)
        
+        
     }
     
 
@@ -42,6 +43,7 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
+        picker.sourceType = .camera
         self.present(picker, animated: true, completion: nil)
         
     }

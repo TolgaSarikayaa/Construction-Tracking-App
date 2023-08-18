@@ -86,7 +86,7 @@
                             <outlet property="delegate" destination="YNm-sV-XBd" id="xdn-Cn-Epy"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="AI5-JT-QHS"/>
+                    <tabBarItem key="tabBarItem" title="Feed" id="AI5-JT-QHS"/>
                     <navigationItem key="navigationItem" title="Places" id="khw-gS-D1j"/>
                     <connections>
                         <segue destination="IRg-bS-ghX" kind="show" identifier="toAddStructure" id="1Zl-G2-9LW"/>
@@ -99,7 +99,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="mtU-uZ-XiB">
             <objects>
-                <tabBarController id="f6U-wS-iK8" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="f6U-wS-iK8" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1Xf-xe-Xi9"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2e5-lP-UT9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
