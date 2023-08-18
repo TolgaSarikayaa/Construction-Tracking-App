@@ -94,6 +94,8 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
         
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(gestureRecognizer)
         
         
         
@@ -111,6 +113,12 @@ class LoginViewController: UIViewController {
         
         
     }
+    
+    // MARK: - Functions
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+
     
     @objc private func loginButtonTapped() {
         

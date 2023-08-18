@@ -7,6 +7,9 @@
 
 import UIKit
 import MapKit
+import FirebaseStorage
+import FirebaseFirestore
+
 
 class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -39,6 +42,28 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
     @objc func saveButton() {
+        
+        let storage = Storage.storage()
+        let storageReference = storage.reference()
+        
+        let mediaFolder = storageReference.child("media")
+        
+        if let data = PlaceModel.sharedinstance.placeImage.jpegData(compressionQuality: 0.5) {
+            
+            let imageReference = mediaFolder.child("image.jpg")
+            imageReference.putData(data, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                } else {
+                    imageReference.downloadURL { (url, error) in
+                        if error == nil {
+                            let imageUrl = url?.absoluteString
+                            print(imageUrl)
+                        }
+                    }
+                }
+            }
+        }
         
     }
     

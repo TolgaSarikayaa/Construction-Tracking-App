@@ -8,6 +8,8 @@ target 'Red' do
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
+pod 'FirebaseFirestore'
+pod 'FirebaseStorage'
 
   target 'RedTests' do
     inherit! :search_paths

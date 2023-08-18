@@ -22,19 +22,42 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         super.viewDidLoad()
 
         title = "Add Structure"
-        //view.backgroundColor = .white
+      
         
         placeImage?.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseImage))
         placeImage?.addGestureRecognizer(gestureRecognizer)
        
+        let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(gestureRecognizer2)
         
     }
     
-
     
+    // MARK: - Functions
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+
     @IBAction func nextButtonClicked(_ sender: Any) {
      
+        if structureName.text != "" && structureType.text != "" {
+            if let choosenImage = placeImage.image {
+                let placeModel = PlaceModel.sharedinstance
+                placeModel.structureName = structureName.text!
+                placeModel.structureType = structureType.text!
+                placeModel.placeImage = choosenImage
+            }
+            
+            performSegue(withIdentifier: "toMapVC", sender: nil)
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Structure Name/Type?", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            present(alert, animated: true,completion: nil)
+        }
         
     }
     
@@ -43,7 +66,7 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .photoLibrary
-        picker.sourceType = .camera
+        //picker.sourceType = .camera
         self.present(picker, animated: true, completion: nil)
         
     }

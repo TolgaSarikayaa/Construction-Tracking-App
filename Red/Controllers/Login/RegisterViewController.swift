@@ -134,6 +134,9 @@ class RegisterViewController: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
         
         imageView.addGestureRecognizer(gesture)
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(gestureRecognizer)
     }
     
     
@@ -156,6 +159,11 @@ class RegisterViewController: UIViewController {
         registerButton.frame = CGRect(x: 30,y: passwordField.bottom+10, width: scrollView.width-60, height: 52)
         
         
+    }
+    
+    // MARK: - Functions
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     @objc private func registerButtonTapped() {
