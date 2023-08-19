@@ -10,6 +10,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'FirebaseFirestore'
 pod 'FirebaseStorage'
+pod 'SDWebImage', '~> 5.0'
 
   target 'RedTests' do
     inherit! :search_paths
