@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="431" id="cqI-tm-dq6">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="431" id="cqI-tm-dq6" customClass="FeedCell" customModule="Red" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="431"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cqI-tm-dq6" id="IhD-5A-0y7">
@@ -79,6 +79,11 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="JB9-i1-Klo" secondAttribute="bottom" constant="24" id="veL-Qe-6IL"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="structureNameLabel" destination="JB9-i1-Klo" id="P1e-gr-IVN"/>
+                                    <outlet property="userImageView" destination="yak-7v-DTL" id="X7f-Q7-tvZ"/>
+                                    <outlet property="userLabel" destination="onP-sZ-zzB" id="PA1-1d-c7Y"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -21,7 +21,7 @@ class PlacesTableViewController: UITableViewController {
         
       
         
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
+        
 
     }
 
@@ -31,17 +31,19 @@ class PlacesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
+        cell.userLabel.text = "User"
+        cell.structureNameLabel.text = "test"
+        cell.userImageView.image = UIImage(named: "AddPlaceImage")
+        return cell
         
     }
     
-    @objc func addButtonClicked() {
-        performSegue(withIdentifier: "toAddStructure", sender: nil)
-   }
+  
 
     
 }

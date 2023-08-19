@@ -9,6 +9,11 @@ import UIKit
 
 class FeedCell: UITableViewCell {
 
+    @IBOutlet var userLabel: UILabel!
+    
+    @IBOutlet var userImageView: UIImageView!
+    
+    @IBOutlet var structureNameLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -17,6 +22,7 @@ class FeedCell: UITableViewCell {
         
     }
 
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
