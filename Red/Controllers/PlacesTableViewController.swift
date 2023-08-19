@@ -13,7 +13,7 @@ class PlacesTableViewController: UITableViewController {
     var placeIdArray = [String]()
     var selectedPlaceId = ""
     
-    var test = ["test","test2","test3"]
+    
 
     
     override func viewDidLoad() {
@@ -31,15 +31,12 @@ class PlacesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return test.count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        var content = cell.defaultContentConfiguration()
-        content.text = test[indexPath.row]
-        cell.contentConfiguration = content
-        return cell
+        return UITableViewCell()
+        
     }
     
     @objc func addButtonClicked() {

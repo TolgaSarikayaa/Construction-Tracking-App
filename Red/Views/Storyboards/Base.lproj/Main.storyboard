@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="431" id="cqI-tm-dq6">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="431" id="cqI-tm-dq6">
                                 <rect key="frame" x="0.0" y="50" width="393" height="431"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cqI-tm-dq6" id="IhD-5A-0y7">
@@ -154,7 +154,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Benutzerdefiniertes Format – 1" translatesAutoresizingMaskIntoConstraints="NO" id="zq2-4r-zYX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddPlaceImage" translatesAutoresizingMaskIntoConstraints="NO" id="zq2-4r-zYX">
                                 <rect key="frame" x="31" y="68" width="321" height="272"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="272" id="IFX-u9-HP6"/>
@@ -233,6 +233,7 @@
                     <navigationItem key="navigationItem" id="prW-hj-IGI"/>
                     <connections>
                         <outlet property="mapView" destination="AA9-A8-CF8" id="ieO-i8-pVl"/>
+                        <segue destination="f6U-wS-iK8" kind="presentation" identifier="toFeed" modalPresentationStyle="fullScreen" id="WhY-eU-buN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L2j-m1-6Vt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -331,10 +332,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="1Zl-G2-9LW"/>
-        <segue reference="eyX-19-RYF"/>
+        <segue reference="WhY-eU-buN"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Benutzerdefiniertes Format – 1" width="343" height="433"/>
+        <image name="AddPlaceImage" width="343" height="433"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

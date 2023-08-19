@@ -31,6 +31,7 @@
 		14A23F0A2A5EC68500A9EB6A /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */; };
 		14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */; };
 		14B4F6142A4C4D590022F5DF /* AddStructureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4F6132A4C4D590022F5DF /* AddStructureViewController.swift */; };
+		14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BCBE112A9161E200BDAD9B /* FeedCell.swift */; };
 		3388B2C6EAA6799203563CFE /* Pods_Red_RedUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0B25378FA79476D7E1C1D /* Pods_Red_RedUITests.framework */; };
 		3FD6C94F62B40EFB46A755E5 /* Pods_Red.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45425C822BDDEC1F00AA38F4 /* Pods_Red.framework */; };
 		D069A1B9EF8E0B7312158271 /* Pods_RedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E4E5E649847E36E6DABA6D /* Pods_RedTests.framework */; };
@@ -79,6 +80,7 @@
 		14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
 		14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		14B4F6132A4C4D590022F5DF /* AddStructureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStructureViewController.swift; sourceTree = "<group>"; };
+		14BCBE112A9161E200BDAD9B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		17623A11065D2B74E88E7CB0 /* Pods-Red-RedUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red-RedUITests.release.xcconfig"; path = "Target Support Files/Pods-Red-RedUITests/Pods-Red-RedUITests.release.xcconfig"; sourceTree = "<group>"; };
 		20A504F1BA3C9AF42ABDF342 /* Pods-Red-RedUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red-RedUITests.debug.xcconfig"; path = "Target Support Files/Pods-Red-RedUITests/Pods-Red-RedUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2AF32C38501D271C2C118C42 /* Pods-Red.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red.debug.xcconfig"; path = "Target Support Files/Pods-Red/Pods-Red.debug.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */,
 				145E69632A40B876008FB01C /* ViewController.swift */,
 				145E69922A40B911008FB01C /* Login */,
+				14BCBE112A9161E200BDAD9B /* FeedCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				145E69642A40B876008FB01C /* ViewController.swift in Sources */,
 				145E69A22A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
 				145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */,
+				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
 				145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */,
 				14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */,
