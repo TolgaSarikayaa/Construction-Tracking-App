@@ -31,6 +31,13 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(gestureRecognizer2)
         
+        
+        placeImage.layer.cornerRadius = 15
+        
+      
+        
+        
+        
     }
     
     

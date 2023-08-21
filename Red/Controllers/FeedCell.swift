@@ -15,6 +15,7 @@ class FeedCell: UITableViewCell {
     
     @IBOutlet var structureNameLabel: UILabel!
     
+    @IBOutlet var documentIdLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

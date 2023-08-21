@@ -16,7 +16,7 @@ class PlacesTableViewController: UITableViewController {
     var placeNameArray = [String]()
     var placeIdArray = [String]()
     var userImageArray = [String]()
-    var selectedPlaceId = ""
+    var selectedPlaceId = [String]()
     
     
 
@@ -44,6 +44,7 @@ class PlacesTableViewController: UITableViewController {
         cell.userLabel.text = userArray[indexPath.row]
         cell.structureNameLabel.text = placeNameArray[indexPath.row]
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
+        cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
         return cell
         
     }
@@ -53,7 +54,7 @@ class PlacesTableViewController: UITableViewController {
         
         let FirestoreDatabase = Firestore.firestore()
         
-        FirestoreDatabase.collection("Posts").addSnapshotListener { (snapshot, error) in
+        FirestoreDatabase.collection("Posts").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else {
@@ -62,9 +63,11 @@ class PlacesTableViewController: UITableViewController {
                     self.userImageArray.removeAll(keepingCapacity: false)
                     self.userArray.removeAll(keepingCapacity: false)
                     self.placeNameArray.removeAll(keepingCapacity: false)
+                    self.selectedPlaceId.removeAll(keepingCapacity: false)
                     
                     for document in snapshot!.documents {
                         let documentID = document.documentID
+                        self.selectedPlaceId.append(documentID)
                         
                         
                         if let postedBy = document.get("postedBy") as? String {
