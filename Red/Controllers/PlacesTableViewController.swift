@@ -20,7 +20,7 @@ class PlacesTableViewController: UITableViewController {
     
     
 
-    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,11 +88,21 @@ class PlacesTableViewController: UITableViewController {
                 
             }
         }
-        
-        
-        
-        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailsVC" {
+            let destinationVC = segue.destination as? DetailsVC
+            destinationVC?.choosenPlaceId = selectedPlaceId
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPlaceId = placeIdArray
+        self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
+    }
+    
+    
     
   
 

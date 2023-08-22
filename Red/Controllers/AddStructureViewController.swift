@@ -9,7 +9,7 @@ import UIKit
 
 class AddStructureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-   
+    // MARK: - UI Elements
     @IBOutlet var structureName: UITextField!
     
     @IBOutlet var structureType: UITextField!
@@ -18,6 +18,7 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
     @IBOutlet var placeImage: UIImageView!
     
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 

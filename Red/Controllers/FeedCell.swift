@@ -9,6 +9,7 @@ import UIKit
 
 class FeedCell: UITableViewCell {
 
+    // MARK: - UI Elements
     @IBOutlet var userLabel: UILabel!
     
     @IBOutlet var userImageView: UIImageView!
@@ -17,6 +18,7 @@ class FeedCell: UITableViewCell {
     
     @IBOutlet var documentIdLabel: UILabel!
     
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         

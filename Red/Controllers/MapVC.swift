@@ -14,12 +14,13 @@ import FirebaseAuth
 
 class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-   
+    // MARK: - UI Elements
     @IBOutlet var mapView: MKMapView!
     
     var locationManager = CLLocationManager()
     
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,55 +51,61 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @objc func saveButton() {
         
-        let storage = Storage.storage()
-        let storageReference = storage.reference()
-        
-        let mediaFolder = storageReference.child("media")
-        
-        if let data = PlaceModel.sharedinstance.placeImage.jpegData(compressionQuality: 0.5) {
+        if PlaceModel.sharedinstance.placeLatitude == "" && PlaceModel.sharedinstance.placeLongitude == "" {
+            self.makeAlert(titleInput: "Error", messageInput: "Please select your cordinate")
+        } else {
             
-            let uuid = UUID().uuidString
+            let storage = Storage.storage()
+            let storageReference = storage.reference()
             
-            let imageReference = mediaFolder.child("\(uuid).jpg")
-            imageReference.putData(data, metadata: nil) { (metadata, error) in
-                if error != nil {
-                    self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
-                } else {
-                    imageReference.downloadURL { (url, error) in
-                        if error == nil {
-                            let imageUrl = url?.absoluteString
-                            
-                            
-                            // Database
-                            let firestoreDatabase = Firestore.firestore()
-                            var firestoreReference : DocumentReference? = nil
-                            
-                            let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser?.email!, "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude] as [String : Any]
-                            
-                            firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
-                                if error != nil {
-                                    self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
-                               
-                                } else {
-                                    
-                                    PlaceModel.sharedinstance.placeImage = UIImage(named: "AddPlaceImage")!
-                                    PlaceModel.sharedinstance.structureName = ""
-                                    PlaceModel.sharedinstance.structureType = ""
-                                   
-                                    self.performSegue(withIdentifier: "toFeed", sender: nil)
-                                    
-                                    
-                                    
-                                    
-                                    
-                                }
-                            })
+            let mediaFolder = storageReference.child("media")
+            
+            if let data = PlaceModel.sharedinstance.placeImage.jpegData(compressionQuality: 0.5) {
+                
+                let uuid = UUID().uuidString
+                
+                let imageReference = mediaFolder.child("\(uuid).jpg")
+                imageReference.putData(data, metadata: nil) { (metadata, error) in
+                    
+                    if error != nil {
+                        self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
+                    } else {
+                        imageReference.downloadURL { (url, error) in
+                            if error == nil {
+                                let imageUrl = url?.absoluteString
+                                
+                                
+                                
+                                // Database
+                                let firestoreDatabase = Firestore.firestore()
+                                var firestoreReference : DocumentReference? = nil
+                                
+                                let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser?.email!, "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude] as [String : Any]
+                                
+                                firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
+                                    if error != nil {
+                                        self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                        
+                                    } else {
+                                        
+                                        PlaceModel.sharedinstance.placeImage = UIImage(named: "AddPlaceImage")!
+                                        PlaceModel.sharedinstance.structureName = ""
+                                        PlaceModel.sharedinstance.structureType = ""
+                                        
+                                        self.performSegue(withIdentifier: "toFeed", sender: nil)
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    }
+                                })
+                            }
                         }
                     }
                 }
             }
         }
-        
     }
     
     @objc func backButton() {
