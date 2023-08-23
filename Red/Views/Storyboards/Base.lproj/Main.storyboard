@@ -105,7 +105,7 @@
                             <outlet property="delegate" destination="YNm-sV-XBd" id="xdn-Cn-Epy"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Feed" id="AI5-JT-QHS"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="house" catalog="system" id="AI5-JT-QHS"/>
                     <navigationItem key="navigationItem" title="Places" id="khw-gS-D1j"/>
                     <connections>
                         <segue destination="IRg-bS-ghX" kind="show" identifier="toAddStructure" id="1Zl-G2-9LW"/>
@@ -192,24 +192,13 @@
             </objects>
             <point key="canvasLocation" x="2152" y="306"/>
         </scene>
-        <!--Profil-->
+        <!--Log Out-->
         <scene sceneID="BLR-Tm-svZ">
             <objects>
-                <viewController id="rYq-34-D5C" customClass="ProfilViewController" customModule="Red" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Log Out" id="rYq-34-D5C" customClass="ProfilViewController" customModule="Red" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qXf-7T-S9o">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCW-XT-vie">
-                                <rect key="frame" x="154" y="409" width="85" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Log Out"/>
-                                <connections>
-                                    <action selector="logOut:" destination="rYq-34-D5C" eventType="touchUpInside" id="0WC-CG-KKC"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2C5-bB-Spp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -227,7 +216,7 @@
             <objects>
                 <viewController id="IRg-bS-ghX" customClass="AddStructureViewController" customModule="Red" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AID-5T-6Yw">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddPlaceImage" translatesAutoresizingMaskIntoConstraints="NO" id="zq2-4r-zYX">
@@ -237,7 +226,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFE-aW-Zul">
-                                <rect key="frame" x="161" y="686" width="60" height="35"/>
+                                <rect key="frame" x="161" y="725" width="60" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Next"/>
                                 <connections>
@@ -425,11 +414,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="zEw-Ka-bKc"/>
-        <segue reference="WhY-eU-buN"/>
+        <segue reference="1Zl-G2-9LW"/>
+        <segue reference="eyX-19-RYF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="AddPlaceImage" width="343" height="433"/>
+        <image name="house" catalog="system" width="128" height="104"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -52,6 +52,7 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
                         self.choosenPlaceId.append(documentId)
                         
                         if let imageUrl = document.get("imageUrl") as? String {
+                           
                             
                         }
                         if let postComment = document.get("postComment") as? String {
