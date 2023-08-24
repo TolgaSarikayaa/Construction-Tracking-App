@@ -9,12 +9,15 @@ import UIKit
 import FirebaseAuth
 
 class ProfilViewController: UIViewController {
+    
+   
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
         return scrollView
     }()
+    
    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -39,15 +42,18 @@ class ProfilViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      title = "Profil"
+        
+       
+        
         
         logOutButton.addTarget(self, action: #selector(logOutButtonTapped), for: .touchUpInside)
         
         view.addSubview(scrollView)
+       
         scrollView.addSubview(imageView)
         scrollView.addSubview(logOutButton)
         
-       
+        
         
         
    

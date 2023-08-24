@@ -19,9 +19,12 @@ class FeedCell: UITableViewCell {
     @IBOutlet var documentIdLabel: UILabel!
     
    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+       
         
     }
 
@@ -29,6 +32,8 @@ class FeedCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        
+    
         
         
     }

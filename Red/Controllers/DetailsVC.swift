@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import FirebaseFirestore
 import FirebaseDatabase
+import SDWebImage
 
 class DetailsVC: UIViewController, MKMapViewDelegate {
 
@@ -23,13 +24,23 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
     var choosenLatitude = Double()
     var choosenLongitude = Double()
     var choosenImageArray = [String]()
+    
+    var choosenImage: String = ""
+    var choosenName: String = ""
 
+
+    var selectedStructure : PlaceModel?
     
    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
+        detailsImageView.sd_setImage(with: URL(string: choosenImage), completed: nil)
+                detailsNameLabel.text = choosenName
+
+        
         getData()
         detailsMapView.delegate = self
         
@@ -47,48 +58,44 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
             } else {
                 if snapshot?.isEmpty != true {
                     
+                    
+                    
                     for document in snapshot!.documents {
                         let documentId = document.documentID
                         self.choosenPlaceId.append(documentId)
                         
+                        
                         if let imageUrl = document.get("imageUrl") as? String {
-                           
+                            self.detailsImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
                             
                         }
                         if let postComment = document.get("postComment") as? String {
                             self.detailsNameLabel.text = postComment
+                            
                         }
                         
-                        if let postLatitude = document.get("placelatitude") as? String {
-                            if let placelatitude = Double(postLatitude) {
-                                self.choosenLatitude = placelatitude
-                            }
+                        if let postLatitude = document.get("placelatitude") as? String, let placelatitude = Double(postLatitude),
+                           let postLongitude = document.get("placeLongitude") as? String, let placeLongitude = Double(postLongitude) {
+                            self.choosenLatitude = placelatitude
+                            self.choosenLongitude = placeLongitude
+                            
+                            
+                            let location = CLLocationCoordinate2D(latitude: self.choosenLatitude, longitude: self.choosenLongitude)
+                            let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                            let region = MKCoordinateRegion(center: location, span: span)
+                            self.detailsMapView.setRegion(region, animated: true)
+                            
+                            let annotation = MKPointAnnotation()
+                            annotation.coordinate = location
+                            annotation.title = self.detailsNameLabel.text
+                            self.detailsMapView.addAnnotation(annotation)
                         }
-                        
-                        if let postLongitude = document.get("placeLongitude") as? String {
-                            if let placeLongitude = Double(postLongitude) {
-                                self.choosenLongitude = placeLongitude
-                            }
-                        }
-                        
-                        // MAP
-                        
-                        let location = CLLocationCoordinate2D(latitude: self.choosenLatitude, longitude: self.choosenLongitude)
-                        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.0005)
-                        let region = MKCoordinateRegion(center: location, span: span)
-                        self.detailsMapView.setRegion(region, animated: true)
-                        
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = location
-                        annotation.title = self.detailsNameLabel.text!
-                        self.detailsMapView.addAnnotation(annotation)
                         
                     }
-                    
                 }
             }
+            
         }
-        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

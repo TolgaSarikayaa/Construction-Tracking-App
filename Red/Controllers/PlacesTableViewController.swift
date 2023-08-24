@@ -24,7 +24,7 @@ class PlacesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        
         
         getDataFromFirestore()
 
@@ -35,7 +35,7 @@ class PlacesTableViewController: UITableViewController {
    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return userArray.count
     }
     
@@ -43,6 +43,7 @@ class PlacesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.userLabel.text = userArray[indexPath.row]
         cell.structureNameLabel.text = placeNameArray[indexPath.row]
+        // Burdan dene
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
         cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
         return cell
@@ -90,15 +91,24 @@ class PlacesTableViewController: UITableViewController {
         }
     }
     
+    // Hata aliyoruz
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC" {
-            let destinationVC = segue.destination as? DetailsVC
-            destinationVC?.choosenPlaceId = selectedPlaceId
+            
+            if let destinationVC = segue.destination as? DetailsVC,
+                     let selectedIndex = tableView.indexPathForSelectedRow?.row {
+                      destinationVC.choosenPlaceId = [selectedPlaceId[selectedIndex]]
+                      destinationVC.choosenImage = userImageArray[selectedIndex]
+                      destinationVC.choosenName = placeNameArray[selectedIndex]
+                      
+                  }
+              }
+         
+             
         }
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedPlaceId = placeIdArray
+       
         self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
     
