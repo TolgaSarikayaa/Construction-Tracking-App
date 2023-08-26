@@ -11,6 +11,7 @@ pod 'Firebase/Database'
 pod 'FirebaseFirestore'
 pod 'FirebaseStorage'
 pod 'SDWebImage', '~> 5.0'
+pod 'JGProgressHUD'
 
   target 'RedTests' do
     inherit! :search_paths

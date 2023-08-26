@@ -37,8 +37,6 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         
 
-        detailsImageView.sd_setImage(with: URL(string: choosenImage), completed: nil)
-                detailsNameLabel.text = choosenName
 
         
         getData()
@@ -58,7 +56,9 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
             } else {
                 if snapshot?.isEmpty != true {
                     
-                    
+                    self.choosenImage.removeAll(keepingCapacity: false)
+                    self.choosenName.removeAll(keepingCapacity: false)
+                    self.choosenPlaceId.removeAll(keepingCapacity: false)
                     
                     for document in snapshot!.documents {
                         let documentId = document.documentID
@@ -66,7 +66,8 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
                         
                         
                         if let imageUrl = document.get("imageUrl") as? String {
-                            self.detailsImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
+                            
+                                self.detailsImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
                             
                         }
                         if let postComment = document.get("postComment") as? String {
@@ -92,6 +93,8 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
                         }
                         
                     }
+                    
+                    
                 }
             }
             

@@ -10,6 +10,7 @@ import MapKit
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
+import JGProgressHUD
 
 
 class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
@@ -18,6 +19,8 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet var mapView: MKMapView!
     
     var locationManager = CLLocationManager()
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     
     // MARK: - Life Cycle
@@ -55,6 +58,8 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             self.makeAlert(titleInput: "Error", messageInput: "Please select your cordinate")
         } else {
             
+            spinner.show(in: view)
+            
             let storage = Storage.storage()
             let storageReference = storage.reference()
             
@@ -80,7 +85,7 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                                 let firestoreDatabase = Firestore.firestore()
                                 var firestoreReference : DocumentReference? = nil
                                 
-                                let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser?.email!, "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude] as [String : Any]
+                                let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser!.email!, "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude] as [String : Any]
                                 
                                 firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
                                     if error != nil {
@@ -91,6 +96,10 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                                         PlaceModel.sharedinstance.placeImage = UIImage(named: "AddPlaceImage")!
                                         PlaceModel.sharedinstance.structureName = ""
                                         PlaceModel.sharedinstance.structureType = ""
+                                        
+                                        DispatchQueue.main.async {
+                                            self.spinner.dismiss()
+                                        }
                                         
                                         self.performSegue(withIdentifier: "toFeed", sender: nil)
                                         

@@ -24,9 +24,15 @@ class FeedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-       
+        userImageView.layer.cornerRadius = 32
+        userImageView.clipsToBounds = true
+        userImageView.layer.shadowColor = UIColor.black.cgColor
+        userImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        userImageView.layer.shadowOpacity = 1
         
     }
+    
+    
 
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,5 +43,7 @@ class FeedCell: UITableViewCell {
         
         
     }
+    
+    
 
 }

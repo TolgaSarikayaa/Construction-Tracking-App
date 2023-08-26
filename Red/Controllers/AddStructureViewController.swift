@@ -34,7 +34,7 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         
         
         placeImage.layer.cornerRadius = 15
-        
+       
       
         
         

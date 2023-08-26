@@ -46,6 +46,7 @@ class PlacesTableViewController: UITableViewController {
         // Burdan dene
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
         cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
+        
         return cell
         
     }

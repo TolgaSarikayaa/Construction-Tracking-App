@@ -7,8 +7,11 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class RegisterViewController: UIViewController {
+    
+    private let spinner = JGProgressHUD(style: .dark)
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -183,6 +186,8 @@ class RegisterViewController: UIViewController {
               alertUserLoginError()
             return
         }
+        
+        spinner.show(in: view)
         
         
         // Firebase Login
