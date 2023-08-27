@@ -145,8 +145,5 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
     @objc func backButton() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
- 
 
 }
