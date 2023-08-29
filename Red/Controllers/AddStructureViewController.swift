@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class AddStructureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -35,10 +36,6 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
         
         placeImage.layer.cornerRadius = 15
        
-      
-        
-        
-        
     }
     
     
@@ -71,20 +68,44 @@ class AddStructureViewController: UIViewController, UIImagePickerControllerDeleg
     
     @objc func chooseImage() {
         
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .photoLibrary
-        //picker.sourceType = .camera
-        self.present(picker, animated: true, completion: nil)
+        let actionSheet = UIAlertController(title: "Structure", message: "How would you like to select a picture?", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { [weak self] _ in
+            self?.presentCamera()
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Chose Photo", style: .default, handler: { [weak self] _ in
+            self?.presentPhotoPicker()
+        }))
+        
+        present(actionSheet, animated: true)
         
     }
+        
+    
+    func presentCamera() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    
+    func presentPhotoPicker() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         placeImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
     }
-
-    
-    
 
 }

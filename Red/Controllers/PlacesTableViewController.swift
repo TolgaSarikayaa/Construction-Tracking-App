@@ -14,6 +14,7 @@ class PlacesTableViewController: UITableViewController {
     
     var userArray = [String]()
     var placeNameArray = [String]()
+    var structureType = [String]()
     var placeIdArray = [String]()
     var userImageArray = [String]()
     var selectedPlaceId = [String]()
@@ -43,7 +44,7 @@ class PlacesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.userLabel.text = userArray[indexPath.row]
         cell.structureNameLabel.text = placeNameArray[indexPath.row]
-        // Burdan dene
+        
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
         cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
         
@@ -66,6 +67,7 @@ class PlacesTableViewController: UITableViewController {
                     self.userArray.removeAll(keepingCapacity: false)
                     self.placeNameArray.removeAll(keepingCapacity: false)
                     self.selectedPlaceId.removeAll(keepingCapacity: false)
+                    self.structureType.removeAll(keepingCapacity: false)
                     
                     for document in snapshot!.documents {
                         let documentID = document.documentID
@@ -83,6 +85,11 @@ class PlacesTableViewController: UITableViewController {
                         if let imageUrl = document.get("imageUrl") as? String {
                             self.userImageArray.append(imageUrl)
                         }
+                        
+                        if let postStructureType = document.get("structureType") as? String {
+                            self.structureType.append(postStructureType)
+                        }
+                        
                     }
                    
                     self.tableView.reloadData()
@@ -92,7 +99,7 @@ class PlacesTableViewController: UITableViewController {
         }
     }
     
-    // Hata aliyoruz
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC" {
             
@@ -101,6 +108,7 @@ class PlacesTableViewController: UITableViewController {
                       destinationVC.choosenPlaceId = [selectedPlaceId[selectedIndex]]
                       destinationVC.choosenImage = userImageArray[selectedIndex]
                       destinationVC.choosenName = placeNameArray[selectedIndex]
+                      destinationVC.choosenType = structureType[selectedIndex]
                       
                   }
               }

@@ -18,6 +18,9 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var detailsNameLabel: UILabel!
     
+    @IBOutlet var detailsTypeLabel: UILabel!
+    
+    
     @IBOutlet var detailsMapView: MKMapView!
     
     var choosenPlaceId = [String]()
@@ -27,6 +30,7 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
     
     var choosenImage: String = ""
     var choosenName: String = ""
+    var choosenType: String = ""
 
 
     var selectedStructure : PlaceModel?
@@ -73,6 +77,10 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
                         if let postComment = document.get("postComment") as? String {
                             self.detailsNameLabel.text = postComment
                             
+                        }
+                        
+                        if let postStructureType = document.get("structureType") as? String {
+                            self.detailsTypeLabel.text = postStructureType
                         }
                         
                         if let postLatitude = document.get("placelatitude") as? String, let placelatitude = Double(postLatitude),

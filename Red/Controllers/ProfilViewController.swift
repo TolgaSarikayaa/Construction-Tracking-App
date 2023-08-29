@@ -41,10 +41,6 @@ class ProfilViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-       
-        
         
         logOutButton.addTarget(self, action: #selector(logOutButtonTapped), for: .touchUpInside)
         
@@ -52,11 +48,6 @@ class ProfilViewController: UIViewController {
        
         scrollView.addSubview(imageView)
         scrollView.addSubview(logOutButton)
-        
-        
-        
-        
-   
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,9 +60,6 @@ class ProfilViewController: UIViewController {
         imageView.layer.cornerRadius = imageView.width/2.0
         logOutButton.frame = CGRect(x: 30, y: imageView.bottom+20, width: scrollView.width-60, height: 52)
     }
-    
-
-   
     
     // MARK: - Actions
     @objc func logOutButtonTapped() {

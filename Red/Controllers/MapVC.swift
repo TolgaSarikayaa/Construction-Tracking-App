@@ -42,6 +42,7 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         mapView.addGestureRecognizer(recognizer)
         
     }
+    // MARK: - Functions
     
     func makeAlert(titleInput: String, messageInput: String) {
         let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
@@ -102,11 +103,6 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                                         }
                                         
                                         self.performSegue(withIdentifier: "toFeed", sender: nil)
-                                        
-                                        
-                                        
-                                        
-                                        
                                     }
                                 })
                             }
