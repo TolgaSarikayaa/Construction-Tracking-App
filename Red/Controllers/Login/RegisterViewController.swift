@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import JGProgressHUD
+import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
     
@@ -113,7 +114,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Creat Account"
-        //view.backgroundColor = .white
+       
         
        
         
@@ -190,15 +191,19 @@ class RegisterViewController: UIViewController {
         spinner.show(in: view)
         
         
+        
         // Firebase Login
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-            guard let result = authResult, error == nil else {
+            guard error == nil else {
                 print("Error creating user")
                 return
             }
             
-            let user = result.user
-            print("Created User: \(user)")
+            DatabaseManager.shared.insertUser(with: AppUser(firstName: firstName,
+                                                            lastName: lastName,
+                                                            emailAddress: email))
+           // let user = result.user
+            
         }
         
         

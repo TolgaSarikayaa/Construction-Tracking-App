@@ -28,6 +28,8 @@
 		145E69A32A40B9D3008FB01C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69A12A40B9D3008FB01C /* RegisterViewController.swift */; };
 		145E69A42A40B9D3008FB01C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69A12A40B9D3008FB01C /* RegisterViewController.swift */; };
 		145E69A62A44CBCC008FB01C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */; };
+		14658C272A9DEC28000B443B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14658C262A9DEC28000B443B /* StorageManager.swift */; };
+		14658C292A9E011E000B443B /* ProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14658C282A9E011E000B443B /* ProfilVC.swift */; };
 		14A23F0A2A5EC68500A9EB6A /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */; };
 		14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */; };
 		14A307662A94C55300760757 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A307652A94C55300760757 /* DetailsVC.swift */; };
@@ -78,6 +80,8 @@
 		145E699D2A40B9C9008FB01C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		145E69A12A40B9D3008FB01C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		14658C262A9DEC28000B443B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		14658C282A9E011E000B443B /* ProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilVC.swift; sourceTree = "<group>"; };
 		14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
 		14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		14A307652A94C55300760757 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
@@ -191,6 +195,7 @@
 			children = (
 				145E699D2A40B9C9008FB01C /* LoginViewController.swift */,
 				145E69A12A40B9D3008FB01C /* RegisterViewController.swift */,
+				14658C282A9E011E000B443B /* ProfilVC.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -230,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				145E69992A40B9A7008FB01C /* Extensions.swift */,
-				145E699B2A40B9B4008FB01C /* DatabaseManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -240,6 +244,8 @@
 			children = (
 				145E695F2A40B876008FB01C /* AppDelegate.swift */,
 				145E69612A40B876008FB01C /* SceneDelegate.swift */,
+				145E699B2A40B9B4008FB01C /* DatabaseManager.swift */,
+				14658C262A9DEC28000B443B /* StorageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -506,6 +512,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14658C272A9DEC28000B443B /* StorageManager.swift in Sources */,
 				145E699E2A40B9C9008FB01C /* LoginViewController.swift in Sources */,
 				143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */,
 				143FB9C82A8CE27500D432D8 /* MapVC.swift in Sources */,
@@ -514,6 +521,7 @@
 				145E69642A40B876008FB01C /* ViewController.swift in Sources */,
 				145E69A22A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
 				145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */,
+				14658C292A9E011E000B443B /* ProfilVC.swift in Sources */,
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
 				145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */,
