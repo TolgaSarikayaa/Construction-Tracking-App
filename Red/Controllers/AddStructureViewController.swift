@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import JGProgressHUD
+
 
 class AddStructureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

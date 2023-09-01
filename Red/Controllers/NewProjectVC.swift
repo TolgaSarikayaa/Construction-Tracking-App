@@ -22,6 +22,9 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
     @IBOutlet var budget: UITextField!
     
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,6 +91,18 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
             
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMap" {
+            if let choosenImage = projectImageView.image {
+                let placeModel = PlaceModel.sharedinstance
+                placeModel.structureName = projectName.text!
+                placeModel.structureType = projectType.text!
+                placeModel.placeImage = choosenImage
+            }
+        }
+    }
+    
     
     
     

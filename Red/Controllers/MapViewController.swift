@@ -7,6 +7,10 @@
 
 import UIKit
 import MapKit
+import FirebaseStorage
+import FirebaseAuth
+import FirebaseFirestore
+import JGProgressHUD
 
 class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -15,6 +19,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     
     var locationManager = CLLocationManager()
     
+    private let spinner = JGProgressHUD(style: .dark)
     
     
     override func viewDidLoad() {
@@ -71,12 +76,75 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     }
     
     @objc func saveButton() {
+        if PlaceModel.sharedinstance.placeLatitude == "" && PlaceModel.sharedinstance.placeLongitude == "" {
+            self.makeAlert(titleInput: "Error", messageInput: "Please select your cordinate")
+        } else {
+            spinner.show(in: view)
+            
+            let storage = Storage.storage()
+            let storageReference = storage.reference()
+            
+            let mediaFolder = storageReference.child("media")
+            
+            if let data = PlaceModel.sharedinstance.placeImage.jpegData(compressionQuality: 0.5) {
+                
+                let uuid = UUID().uuidString
+                
+                let imageReference = mediaFolder.child("\(uuid).jpg")
+                imageReference.putData(data, metadata: nil) { (metadata, error) in
+                    
+                    if error != nil {
+                        self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
+                    } else {
+                        imageReference.downloadURL { (url, error) in
+                            if error == nil {
+                                let imageUrl = url?.absoluteString
+                                
+                                // Database
+                                let firestoreDatabase = Firestore.firestore()
+                                var firestoreReference : DocumentReference? = nil
+                                
+                                let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser!.email!, "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude] as [String : Any]
+                                
+                                firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
+                                    if error != nil {
+                                        self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                    } else {
+                                        PlaceModel.sharedinstance.placeImage = UIImage(named: "AddPlaceImage")!
+                                        PlaceModel.sharedinstance.structureName = ""
+                                        PlaceModel.sharedinstance.structureType = ""
+                                        
+                                        DispatchQueue.main.async {
+                                            self.spinner.dismiss()
+                                        }
+                                        
+                                        self.performSegue(withIdentifier: "toMain", sender: nil)
+                                    }
+                                })
+                                
+                            }
+                        }
+                    }
+                }
+                
+                
+                
+            }
+            
+        }
         
     }
     
     @objc func backButton() {
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    func makeAlert(titleInput: String, messageInput: String) {
+        let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
     }
     
 
