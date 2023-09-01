@@ -15,6 +15,8 @@ class PlaceModel {
     var structureName = ""
     var structureType = ""
     var placeImage = UIImage()
+    var engineer = ""
+    var budget = ""
     
     var placeLatitude = ""
     var placeLongitude = ""

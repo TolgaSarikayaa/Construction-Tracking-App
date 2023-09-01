@@ -23,6 +23,10 @@ class ProfilViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
         imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .gray
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
         
     }()

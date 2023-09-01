@@ -29,7 +29,12 @@
 		145E69A42A40B9D3008FB01C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69A12A40B9D3008FB01C /* RegisterViewController.swift */; };
 		145E69A62A44CBCC008FB01C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */; };
 		14658C272A9DEC28000B443B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14658C262A9DEC28000B443B /* StorageManager.swift */; };
-		14658C292A9E011E000B443B /* ProfilVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14658C282A9E011E000B443B /* ProfilVC.swift */; };
+		1498E2A02AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
+		1498E2A12AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
+		1498E2A22AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
+		1498E2A42AA2015D002A7EBB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E2A32AA2015D002A7EBB /* MapViewController.swift */; };
+		1498E2A52AA2015D002A7EBB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E2A32AA2015D002A7EBB /* MapViewController.swift */; };
+		1498E2A62AA2015D002A7EBB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E2A32AA2015D002A7EBB /* MapViewController.swift */; };
 		14A23F0A2A5EC68500A9EB6A /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */; };
 		14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */; };
 		14A307662A94C55300760757 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A307652A94C55300760757 /* DetailsVC.swift */; };
@@ -81,7 +86,8 @@
 		145E69A12A40B9D3008FB01C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14658C262A9DEC28000B443B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		14658C282A9E011E000B443B /* ProfilVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilVC.swift; sourceTree = "<group>"; };
+		1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectVC.swift; sourceTree = "<group>"; };
+		1498E2A32AA2015D002A7EBB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
 		14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		14A307652A94C55300760757 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
@@ -195,7 +201,6 @@
 			children = (
 				145E699D2A40B9C9008FB01C /* LoginViewController.swift */,
 				145E69A12A40B9D3008FB01C /* RegisterViewController.swift */,
-				14658C282A9E011E000B443B /* ProfilVC.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -210,6 +215,8 @@
 				143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */,
 				14A307652A94C55300760757 /* DetailsVC.swift */,
 				145E69632A40B876008FB01C /* ViewController.swift */,
+				1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */,
+				1498E2A32AA2015D002A7EBB /* MapViewController.swift */,
 				145E69922A40B911008FB01C /* Login */,
 			);
 			path = Controllers;
@@ -521,11 +528,12 @@
 				145E69642A40B876008FB01C /* ViewController.swift in Sources */,
 				145E69A22A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
 				145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */,
-				14658C292A9E011E000B443B /* ProfilVC.swift in Sources */,
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
 				145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */,
 				14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */,
+				1498E2A42AA2015D002A7EBB /* MapViewController.swift in Sources */,
+				1498E2A02AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */,
 				14B4F6142A4C4D590022F5DF /* AddStructureViewController.swift in Sources */,
 				145E696A2A40B876008FB01C /* Red.xcdatamodeld in Sources */,
 				14A23F0A2A5EC68500A9EB6A /* PlacesTableViewController.swift in Sources */,
@@ -539,6 +547,8 @@
 				145E69A32A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
 				145E699F2A40B9C9008FB01C /* LoginViewController.swift in Sources */,
 				145E697A2A40B877008FB01C /* RedTests.swift in Sources */,
+				1498E2A52AA2015D002A7EBB /* MapViewController.swift in Sources */,
+				1498E2A12AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +556,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1498E2A22AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */,
+				1498E2A62AA2015D002A7EBB /* MapViewController.swift in Sources */,
 				145E69A02A40B9C9008FB01C /* LoginViewController.swift in Sources */,
 				145E69862A40B877008FB01C /* RedUITestsLaunchTests.swift in Sources */,
 				145E69842A40B877008FB01C /* RedUITests.swift in Sources */,
