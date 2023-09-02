@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141D8D042AA376820071348B /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D8D032AA376820071348B /* LaunchScreen.swift */; };
 		143FB9C82A8CE27500D432D8 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB9C72A8CE27500D432D8 /* MapVC.swift */; };
 		143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */; };
 		145E69602A40B876008FB01C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E695F2A40B876008FB01C /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		0F4EF520AB08AEA152D3547E /* Pods-RedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedTests.debug.xcconfig"; path = "Target Support Files/Pods-RedTests/Pods-RedTests.debug.xcconfig"; sourceTree = "<group>"; };
+		141D8D032AA376820071348B /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		143FB9C72A8CE27500D432D8 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		145E695C2A40B876008FB01C /* Red.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Red.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +203,7 @@
 			children = (
 				145E699D2A40B9C9008FB01C /* LoginViewController.swift */,
 				145E69A12A40B9D3008FB01C /* RegisterViewController.swift */,
+				141D8D032AA376820071348B /* LaunchScreen.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */,
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
+				141D8D042AA376820071348B /* LaunchScreen.swift in Sources */,
 				145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */,
 				14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */,
 				1498E2A42AA2015D002A7EBB /* MapViewController.swift in Sources */,
