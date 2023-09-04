@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseDatabase
+/*
 
 final class DatabaseManager {
     
@@ -74,3 +75,4 @@ struct AppUser {
     }
      */
 }
+*/

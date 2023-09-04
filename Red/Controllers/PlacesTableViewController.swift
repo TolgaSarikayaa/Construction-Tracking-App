@@ -9,6 +9,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseDatabase
 import SDWebImage
+import FirebaseAuth
 
 class PlacesTableViewController: UITableViewController {
     
@@ -19,13 +20,13 @@ class PlacesTableViewController: UITableViewController {
     var userImageArray = [String]()
     var selectedPlaceId = [String]()
     
-    
+    let fireStoreDatabase = Firestore.firestore()
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        getUserInfo()
         
         getDataFromFirestore()
 
@@ -55,9 +56,8 @@ class PlacesTableViewController: UITableViewController {
     //MARK: - Funtions
     func getDataFromFirestore() {
         
-        let FirestoreDatabase = Firestore.firestore()
         
-        FirestoreDatabase.collection("Posts").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
+        fireStoreDatabase.collection("Post").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else {
@@ -74,7 +74,7 @@ class PlacesTableViewController: UITableViewController {
                         self.selectedPlaceId.append(documentID)
                         
                         
-                        if let postedBy = document.get("postedBy") as? String {
+                        if let postedBy = document.get("user") as? String {
                             self.userArray.append(postedBy)
                         }
                         
@@ -99,6 +99,27 @@ class PlacesTableViewController: UITableViewController {
         }
     }
     
+    func getUserInfo() {
+            
+            
+            fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snapshot, error) in
+                if error != nil {
+                    self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
+                } else {
+                    if snapshot?.isEmpty == false && snapshot != nil {
+                        for document in snapshot!.documents {
+                            if let username = document.get("username") as? String {
+                                PlaceModel.sharedinstance.email = Auth.auth().currentUser!.email!
+                                PlaceModel.sharedinstance.username = username
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+    
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC" {
@@ -122,9 +143,11 @@ class PlacesTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
     
-    
-    
-  
-
+    func makeAlert(title: String, message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+        }
     
 }

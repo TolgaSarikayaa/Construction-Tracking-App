@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 import FirebaseDatabase
+import FirebaseFirestore
 
 class RegisterViewController: UIViewController {
     
@@ -195,10 +196,15 @@ class RegisterViewController: UIViewController {
                 return
             }
             
-            DatabaseManager.shared.insertUser(with: AppUser(firstName: firstName,
-                                                            lastName: lastName,
-                                                            emailAddress: email))
-           // let user = result.user
+            let fireStore = Firestore.firestore()
+            
+            let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!] as [String : Any]
+            fireStore.collection("UserInfo").addDocument(data: userDictionary) { (error) in
+                if error != nil {
+                    
+                }
+            }
+          
             
         }
         

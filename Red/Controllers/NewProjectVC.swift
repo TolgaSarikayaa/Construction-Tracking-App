@@ -98,6 +98,8 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
                 let placeModel = PlaceModel.sharedinstance
                 placeModel.structureName = projectName.text!
                 placeModel.structureType = projectType.text!
+                placeModel.budget = budget.text!
+                placeModel.engineer = engineerName.text!
                 placeModel.placeImage = choosenImage
             }
         }

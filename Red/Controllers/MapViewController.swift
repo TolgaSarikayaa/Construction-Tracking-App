@@ -57,7 +57,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
             
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinates
-            annotation.title = PlaceModel.sharedinstance.structureType
+            annotation.title = PlaceModel.sharedinstance.structureName
             
             self.mapView.addAnnotation(annotation)
             
@@ -104,9 +104,15 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                 let firestoreDatabase = Firestore.firestore()
                                 var firestoreReference : DocumentReference? = nil
                                 
-                                let firestorePost = ["imageUrl" : imageUrl!, "postedBy" : Auth.auth().currentUser!.email!, "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude] as [String : Any]
+                                firestoreDatabase.collection("Post").whereField("user", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot,error ) in
+                                    if error != nil {
+                                        self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                    }
+                                }
                                 
-                                firestoreReference = firestoreDatabase.collection("Posts").addDocument(data: firestorePost, completion: { (error) in
+                                let firestorePost = ["imageUrl" : imageUrl!, "user" : PlaceModel.sharedinstance.username , "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude, "Engineer": PlaceModel.sharedinstance.engineer, "Budget": PlaceModel.sharedinstance.budget] as [String : Any]
+                                
+                                firestoreReference = firestoreDatabase.collection("Post").addDocument(data: firestorePost, completion: { (error) in
                                     if error != nil {
                                         self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
                                     } else {
