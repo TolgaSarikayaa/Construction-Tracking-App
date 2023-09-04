@@ -232,8 +232,7 @@ class RegisterViewController: UIViewController {
     
     @objc private func didTapRegister() {
         performSegue(withIdentifier: "AddPlace2", sender: nil)
-       //let vc = PlacesTableViewController()
-        //navigationController?.pushViewController(vc, animated: false)
+      
         
         
     }

@@ -41,7 +41,6 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
         mapView.addGestureRecognizer(recognizer)
         
         
-        
       
     }
     

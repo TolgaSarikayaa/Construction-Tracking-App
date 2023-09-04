@@ -106,7 +106,5 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
     }
     
     
-    
-    
 }
 
