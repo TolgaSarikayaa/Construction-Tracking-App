@@ -40,8 +40,6 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
         recognizer.minimumPressDuration = 2
         mapView.addGestureRecognizer(recognizer)
         
-        
-      
     }
     
 
