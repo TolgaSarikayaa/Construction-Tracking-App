@@ -23,5 +23,5 @@ class PlaceModel {
     var placeLatitude = ""
     var placeLongitude = ""
     
-    private init(){}
+    
 }

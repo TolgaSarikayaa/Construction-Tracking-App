@@ -113,10 +113,8 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                     if error != nil {
                                         self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
                                     } else {
-                                        PlaceModel.sharedinstance.placeImage = UIImage(named: "AddPlaceImage")!
-                                        PlaceModel.sharedinstance.structureName = ""
-                                        PlaceModel.sharedinstance.structureType = ""
-                                        
+                                     
+            
                                         DispatchQueue.main.async {
                                             self.spinner.dismiss()
                                         }

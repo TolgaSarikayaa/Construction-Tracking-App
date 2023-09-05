@@ -161,7 +161,7 @@ class LoginViewController: UIViewController {
             }
             
             let user = result.user
-            print("Logged in User: \(user)")
+           
             
         }
          
@@ -186,9 +186,7 @@ class LoginViewController: UIViewController {
     @objc private func didTapRegister() {
         performSegue(withIdentifier: "toRegister", sender: nil)
         
-        //let vc = RegisterViewController()
-        //vc.title = "Create Account"
-        //navigationController?.pushViewController(vc, animated: true)
+      
     }
     
 

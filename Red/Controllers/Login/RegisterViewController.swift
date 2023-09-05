@@ -141,6 +141,7 @@ class RegisterViewController: UIViewController {
     }
     
     
+    
     @objc private func didTapChangeProfilePic() {
         presentPhotoActionSheet()
     }
@@ -203,14 +204,17 @@ class RegisterViewController: UIViewController {
                 if error != nil {
                     
                 }
+                
+                
             }
           
+            self.didTapRegister()
             
         }
         
         
         
-       didTapRegister()
+       
         
         
     }

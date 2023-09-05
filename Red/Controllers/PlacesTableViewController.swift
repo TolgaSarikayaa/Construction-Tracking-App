@@ -26,10 +26,12 @@ class PlacesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getUserInfo()
+        
         
         getDataFromFirestore()
-
+         
+       getUserInfo()
+      
     }
 
     // MARK: - Table view data source
@@ -71,6 +73,7 @@ class PlacesTableViewController: UITableViewController {
                     
                     for document in snapshot!.documents {
                         let documentID = document.documentID
+                        
                         self.selectedPlaceId.append(documentID)
                         
                         
@@ -93,32 +96,50 @@ class PlacesTableViewController: UITableViewController {
                     }
                    
                     self.tableView.reloadData()
+                  
                 }
                 
+                
+                
             }
+            
+            
         }
+        
+      
     }
     
     func getUserInfo() {
-            
-            
-            fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snapshot, error) in
-                if error != nil {
-                    self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
-                } else {
-                    if snapshot?.isEmpty == false && snapshot != nil {
-                        for document in snapshot!.documents {
-                            if let username = document.get("username") as? String {
-                                PlaceModel.sharedinstance.email = Auth.auth().currentUser!.email!
-                                PlaceModel.sharedinstance.username = username
-                            }
-                        }
-                    }
-                }
-            }
-            
-            
-        }
+        
+        if let currentUser = Auth.auth().currentUser {
+               if let email = currentUser.email {
+                   fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: email).getDocuments { (snapshot, error) in
+                       if error != nil {
+                           self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
+                       } else {
+                           if let snapshot = snapshot, !snapshot.isEmpty {
+                               for document in snapshot.documents {
+                                   if let username = document.get("username") as? String {
+                                       PlaceModel.sharedinstance.email = email
+                                       PlaceModel.sharedinstance.username = username
+                                   }
+                               }
+                           }
+                       }
+                   }
+               } else {
+                   // Handle the case where the email is nil
+                   print("User email is nil")
+               }
+           } else {
+               // Handle the case where there is no authenticated user
+               print("No authenticated user")
+           }
+
+        
+    }
+    
+ 
     
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
