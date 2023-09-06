@@ -36,3 +36,14 @@ extension UIView {
     }
     
 }
+
+extension UIAlertController {
+  public  static func Alert(title: String?, message: String?, preferredStyle: UIAlertController.Style = .alert) -> UIAlertController {
+         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
+         
+         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+         
+         return alertController
+     }
+       
+}

@@ -74,7 +74,8 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     
     @objc func saveButton() {
         if PlaceModel.sharedinstance.placeLatitude == "" && PlaceModel.sharedinstance.placeLongitude == "" {
-            self.makeAlert(titleInput: "Error", messageInput: "Please select your cordinate")
+            let alert = UIAlertController.Alert(title: "Error", message: "Please select your coordinate", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
         } else {
             spinner.show(in: view)
             
@@ -91,7 +92,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                 imageReference.putData(data, metadata: nil) { (metadata, error) in
                     
                     if error != nil {
-                        self.makeAlert(titleInput: "Error!", messageInput: error?.localizedDescription ?? "Error")
+                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription)
                     } else {
                         imageReference.downloadURL { (url, error) in
                             if error == nil {
@@ -103,7 +104,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                 
                                 firestoreDatabase.collection("Post").whereField("user", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot,error ) in
                                     if error != nil {
-                                        self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                     }
                                 }
                                 
@@ -111,7 +112,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                 
                                 firestoreReference = firestoreDatabase.collection("Post").addDocument(data: firestorePost, completion: { (error) in
                                     if error != nil {
-                                        self.makeAlert(titleInput: "Error", messageInput: error?.localizedDescription ?? "Error")
+                                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                     } else {
                                      
             
@@ -139,13 +140,6 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     @objc func backButton() {
         self.dismiss(animated: true, completion: nil)
         
-    }
-    
-    func makeAlert(titleInput: String, messageInput: String) {
-        let alert = UIAlertController(title: titleInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
-        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-        alert.addAction(okButton)
-        self.present(alert, animated: true, completion: nil)
     }
     
 

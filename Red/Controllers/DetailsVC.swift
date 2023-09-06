@@ -40,6 +40,7 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Details"
 
 
         
@@ -54,7 +55,7 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
         
         let FirestoreData = Firestore.firestore()
         
-        FirestoreData.collection("Posts").addSnapshotListener { (snapshot, error) in
+        FirestoreData.collection("Post").addSnapshotListener { (snapshot, error) in
             if error != nil {
                 print(error?.localizedDescription)
             } else {
@@ -153,5 +154,7 @@ class DetailsVC: UIViewController, MKMapViewDelegate {
     @objc func backButton() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+   
 
 }

@@ -84,9 +84,7 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
             performSegue(withIdentifier: "toMap", sender: nil)
             
         } else {
-            let alert = UIAlertController(title: "Error", message: "Project Name/Type/Enginner?", preferredStyle: UIAlertController.Style.alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
+            let alert = UIAlertController.Alert(title: "Error", message: "Project Name/Type/Engineer?", preferredStyle: UIAlertController.Style.alert)
             present(alert, animated: true, completion: nil)
             
         }

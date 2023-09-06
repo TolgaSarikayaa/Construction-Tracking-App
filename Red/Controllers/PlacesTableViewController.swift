@@ -19,6 +19,7 @@ class PlacesTableViewController: UITableViewController {
     var placeIdArray = [String]()
     var userImageArray = [String]()
     var selectedPlaceId = [String]()
+    var engineer = [String]()
     
     let fireStoreDatabase = Firestore.firestore()
 
@@ -28,7 +29,7 @@ class PlacesTableViewController: UITableViewController {
         
         
         
-        getDataFromFirestore()
+       getDataFromFirestore()
          
        getUserInfo()
       
@@ -40,12 +41,12 @@ class PlacesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return userArray.count
+        return engineer.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-        cell.userLabel.text = userArray[indexPath.row]
+        cell.userLabel.text = "Enginner: \(engineer[indexPath.row])"
         cell.structureNameLabel.text = placeNameArray[indexPath.row]
         
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
@@ -66,7 +67,7 @@ class PlacesTableViewController: UITableViewController {
                 if snapshot?.isEmpty != true {
                     
                     self.userImageArray.removeAll(keepingCapacity: false)
-                    self.userArray.removeAll(keepingCapacity: false)
+                    self.engineer.removeAll(keepingCapacity: false)
                     self.placeNameArray.removeAll(keepingCapacity: false)
                     self.selectedPlaceId.removeAll(keepingCapacity: false)
                     self.structureType.removeAll(keepingCapacity: false)
@@ -77,8 +78,8 @@ class PlacesTableViewController: UITableViewController {
                         self.selectedPlaceId.append(documentID)
                         
                         
-                        if let postedBy = document.get("user") as? String {
-                            self.userArray.append(postedBy)
+                        if let postedBy = document.get("Engineer") as? String {
+                            self.engineer.append(postedBy)
                         }
                         
                         if let postComment = document.get("postComment") as? String {
@@ -115,7 +116,7 @@ class PlacesTableViewController: UITableViewController {
                if let email = currentUser.email {
                    fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: email).getDocuments { (snapshot, error) in
                        if error != nil {
-                           self.makeAlert(title: "Error", message: error?.localizedDescription ?? "Error")
+                           let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                        } else {
                            if let snapshot = snapshot, !snapshot.isEmpty {
                                for document in snapshot.documents {
@@ -128,11 +129,11 @@ class PlacesTableViewController: UITableViewController {
                        }
                    }
                } else {
-                   // Handle the case where the email is nil
+                   
                    print("User email is nil")
                }
            } else {
-               // Handle the case where there is no authenticated user
+              
                print("No authenticated user")
            }
 
@@ -164,11 +165,5 @@ class PlacesTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
     
-    func makeAlert(title: String, message: String) {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-            let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
-        }
     
 }
