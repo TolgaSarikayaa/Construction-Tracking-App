@@ -18,7 +18,8 @@ class FeedCell: UITableViewCell {
     
     @IBOutlet var documentIdLabel: UILabel!
     
-   
+    @IBOutlet var structureTypeLabel: UILabel!
+    
     
     
     override func awakeFromNib() {

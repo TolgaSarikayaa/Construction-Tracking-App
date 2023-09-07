@@ -105,6 +105,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                 firestoreDatabase.collection("Post").whereField("user", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot,error ) in
                                     if error != nil {
                                         let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                     
                                     }
                                 }
                                 
@@ -119,8 +120,10 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                         DispatchQueue.main.async {
                                             self.spinner.dismiss()
                                         }
+                                       
                                         
                                         self.performSegue(withIdentifier: "toMain", sender: nil)
+                                        
                                     }
                                 })
                                 

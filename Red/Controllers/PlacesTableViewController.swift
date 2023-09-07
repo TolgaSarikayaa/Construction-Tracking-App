@@ -48,7 +48,7 @@ class PlacesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.userLabel.text = "Enginner: \(engineer[indexPath.row])"
         cell.structureNameLabel.text = placeNameArray[indexPath.row]
-        
+        cell.structureTypeLabel.text = structureType[indexPath.row]
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
         cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
         
@@ -146,12 +146,13 @@ class PlacesTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC" {
             
-            if let destinationVC = segue.destination as? DetailsVC,
+            if let destinationVC = segue.destination as? DetailTableViewController,
                      let selectedIndex = tableView.indexPathForSelectedRow?.row {
                       destinationVC.choosenPlaceId = [selectedPlaceId[selectedIndex]]
                       destinationVC.choosenImage = userImageArray[selectedIndex]
                       destinationVC.choosenName = placeNameArray[selectedIndex]
                       destinationVC.choosenType = structureType[selectedIndex]
+                
                       
                   }
               }
@@ -160,7 +161,7 @@ class PlacesTableViewController: UITableViewController {
         }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+     
         
         self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }

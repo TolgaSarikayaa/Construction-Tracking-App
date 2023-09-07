@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		141D8D042AA376820071348B /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D8D032AA376820071348B /* LaunchScreen.swift */; };
+		141D8D0C2AA91A720071348B /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D8D0B2AA91A720071348B /* DetailTableViewController.swift */; };
 		143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */; };
 		145E69602A40B876008FB01C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E695F2A40B876008FB01C /* AppDelegate.swift */; };
 		145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69612A40B876008FB01C /* SceneDelegate.swift */; };
@@ -28,6 +29,7 @@
 		145E69A32A40B9D3008FB01C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69A12A40B9D3008FB01C /* RegisterViewController.swift */; };
 		145E69A42A40B9D3008FB01C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69A12A40B9D3008FB01C /* RegisterViewController.swift */; };
 		145E69A62A44CBCC008FB01C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */; };
+		14645F362AAA102100CD55A5 /* ProblemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */; };
 		14658C272A9DEC28000B443B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14658C262A9DEC28000B443B /* StorageManager.swift */; };
 		1498E2A02AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
 		1498E2A12AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
@@ -64,6 +66,7 @@
 /* Begin PBXFileReference section */
 		0F4EF520AB08AEA152D3547E /* Pods-RedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedTests.debug.xcconfig"; path = "Target Support Files/Pods-RedTests/Pods-RedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		141D8D032AA376820071348B /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		141D8D0B2AA91A720071348B /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		145E695C2A40B876008FB01C /* Red.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Red.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145E695F2A40B876008FB01C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		145E699D2A40B9C9008FB01C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		145E69A12A40B9D3008FB01C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemsTableViewController.swift; sourceTree = "<group>"; };
 		14658C262A9DEC28000B443B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectVC.swift; sourceTree = "<group>"; };
 		1498E2A32AA2015D002A7EBB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 				145E69632A40B876008FB01C /* ViewController.swift */,
 				1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */,
 				1498E2A32AA2015D002A7EBB /* MapViewController.swift */,
+				141D8D0B2AA91A720071348B /* DetailTableViewController.swift */,
+				14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */,
 				145E69922A40B911008FB01C /* Login */,
 			);
 			path = Controllers;
@@ -522,12 +528,14 @@
 				145E699A2A40B9A7008FB01C /* Extensions.swift in Sources */,
 				14A307662A94C55300760757 /* DetailsVC.swift in Sources */,
 				145E69642A40B876008FB01C /* ViewController.swift in Sources */,
+				14645F362AAA102100CD55A5 /* ProblemsTableViewController.swift in Sources */,
 				145E69A22A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
 				145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */,
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
 				141D8D042AA376820071348B /* LaunchScreen.swift in Sources */,
 				145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */,
+				141D8D0C2AA91A720071348B /* DetailTableViewController.swift in Sources */,
 				14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */,
 				1498E2A42AA2015D002A7EBB /* MapViewController.swift in Sources */,
 				1498E2A02AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */,
