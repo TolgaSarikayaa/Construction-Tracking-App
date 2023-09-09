@@ -9,6 +9,7 @@ import UIKit
 import SDWebImage
 import FirebaseFirestore
 import FirebaseStorage
+import JGProgressHUD
 
 class ProblemsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -20,7 +21,7 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
     
     @IBOutlet var mistakeImageView: UIImageView!
     
-    
+    private let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,64 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
     
     @objc func saveButton() {
         
+        if mistakeText.text == "" && personText.text == "" && mistakeImageView == nil {
+            let alert = UIAlertController.Alert(title: "Erro", message: "Mistake?,Person?,Image", preferredStyle: .alert )
+            present(alert, animated: true)
+        } else {
+            spinner.show(in: view)
+            
+            let storage = Storage.storage()
+            let storageReference = storage.reference()
+            
+            let mediaFolder = storageReference.child("problems")
+            
+            if let data = mistakeImageView.image?.jpegData(compressionQuality: 0.5) {
+                 
+                let uuid = UUID().uuidString
+                
+                let imageReference = mediaFolder.child("\(uuid).jpg")
+                
+                imageReference.putData(data, metadata: nil) { (metadata, error) in
+                    if error != nil {
+                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                    } else {
+                        imageReference.downloadURL { (url, error) in
+                            if error == nil {
+                                let imageUrl = url?.absoluteString
+                                
+                                // FireStore
+                                let fireStore = Firestore.firestore()
+                                
+                                fireStore.collection("Problems").whereField("User", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot, error) in
+                                    if error != nil {
+                                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                    }
+                                }
+                                
+                                let firestoreProb = ["image": imageUrl!, "User": PlaceModel.sharedinstance.username, "mistake": self.mistakeText.text!, "date": FieldValue.serverTimestamp(), "person": self.personText.text!] as [String : Any]
+                                
+                                fireStore.collection("Problems").addDocument(data: firestoreProb) { (error) in
+                                    if error != nil {
+                                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                    } else {
+                                        DispatchQueue.main.async {
+                                            self.spinner.dismiss()
+                                        }
+                                        
+                                        self.performSegue(withIdentifier: "toProblem", sender: nil)
+                                        self.tabBarController?.selectedIndex = 0
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+            
+        }
         
         
     }

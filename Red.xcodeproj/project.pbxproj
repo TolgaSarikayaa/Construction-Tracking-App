@@ -40,6 +40,9 @@
 		14A23F0A2A5EC68500A9EB6A /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */; };
 		14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */; };
 		14A307662A94C55300760757 /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A307652A94C55300760757 /* DetailsVC.swift */; };
+		14B56CE62AAC799000D7EB85 /* ProblemFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B56CE52AAC799000D7EB85 /* ProblemFeedTableViewController.swift */; };
+		14B56CEA2AAC7DEF00D7EB85 /* ProblemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */; };
+		14B56CEC2AAC84AA00D7EB85 /* ProblemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B56CEB2AAC84AA00D7EB85 /* ProblemModel.swift */; };
 		14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BCBE112A9161E200BDAD9B /* FeedCell.swift */; };
 		3388B2C6EAA6799203563CFE /* Pods_Red_RedUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0B25378FA79476D7E1C1D /* Pods_Red_RedUITests.framework */; };
 		3FD6C94F62B40EFB46A755E5 /* Pods_Red.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45425C822BDDEC1F00AA38F4 /* Pods_Red.framework */; };
@@ -94,6 +97,9 @@
 		14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
 		14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		14A307652A94C55300760757 /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		14B56CE52AAC799000D7EB85 /* ProblemFeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemFeedTableViewController.swift; sourceTree = "<group>"; };
+		14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCell.swift; sourceTree = "<group>"; };
+		14B56CEB2AAC84AA00D7EB85 /* ProblemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemModel.swift; sourceTree = "<group>"; };
 		14BCBE112A9161E200BDAD9B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		17623A11065D2B74E88E7CB0 /* Pods-Red-RedUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red-RedUITests.release.xcconfig"; path = "Target Support Files/Pods-Red-RedUITests/Pods-Red-RedUITests.release.xcconfig"; sourceTree = "<group>"; };
 		20A504F1BA3C9AF42ABDF342 /* Pods-Red-RedUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red-RedUITests.debug.xcconfig"; path = "Target Support Files/Pods-Red-RedUITests/Pods-Red-RedUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +226,8 @@
 				1498E2A32AA2015D002A7EBB /* MapViewController.swift */,
 				141D8D0B2AA91A720071348B /* DetailTableViewController.swift */,
 				14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */,
+				14B56CE52AAC799000D7EB85 /* ProblemFeedTableViewController.swift */,
+				14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */,
 				145E69922A40B911008FB01C /* Login */,
 			);
 			path = Controllers;
@@ -237,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				14A23F0B2A5EC71900A9EB6A /* PlaceModel.swift */,
+				14B56CEB2AAC84AA00D7EB85 /* ProblemModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -533,8 +542,11 @@
 				145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */,
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
+				14B56CE62AAC799000D7EB85 /* ProblemFeedTableViewController.swift in Sources */,
 				141D8D042AA376820071348B /* LaunchScreen.swift in Sources */,
+				14B56CEA2AAC7DEF00D7EB85 /* ProblemCell.swift in Sources */,
 				145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */,
+				14B56CEC2AAC84AA00D7EB85 /* ProblemModel.swift in Sources */,
 				141D8D0C2AA91A720071348B /* DetailTableViewController.swift in Sources */,
 				14A23F0C2A5EC71900A9EB6A /* PlaceModel.swift in Sources */,
 				1498E2A42AA2015D002A7EBB /* MapViewController.swift in Sources */,
