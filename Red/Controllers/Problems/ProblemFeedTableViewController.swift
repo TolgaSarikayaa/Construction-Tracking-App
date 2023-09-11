@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseDatabase
+import FirebaseStorage
 import SDWebImage
 import FirebaseAuth
 
@@ -49,12 +50,15 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
                                     
                                     let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake)
                                     self.problemArray.append(problem)
+                                    
                                 }
                             }
                         }
+                        
                     }
                     
                     self.tableView.reloadData()
+                    
                 }
             }
         }
@@ -62,24 +66,22 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProblemCell
-        cell.projectPersonLabel.text = problemArray[indexPath.row].projectEngineer
-        cell.problemLabel.text = problemArray[indexPath.row].problemExplain
+        cell.projectPersonLabel.text = "Responsible Engineer: \(problemArray[indexPath.row].projectEngineer)"
+        cell.problemLabel.text = "Problem: \(problemArray[indexPath.row].problemExplain)"
         cell.problemImageView.sd_setImage(with: URL(string: problemArray[indexPath.row].problemImage))
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+            
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
-                
             } else {
                 cell.accessoryType = .checkmark
-                cell.backgroundColor = .systemGreen
             }
-            
-        
         }
+        
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -87,17 +89,14 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let media = storageRef.child("problems")
+        
         if editingStyle == .delete {
-            //fireStoreDatabase.collection("Problems").parent?.delete()
             
         }
     }
     
-    
-    
-
-    
-   
-
 
 }
