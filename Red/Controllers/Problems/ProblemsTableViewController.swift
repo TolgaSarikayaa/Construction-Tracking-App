@@ -58,6 +58,7 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                 imageReference.putData(data, metadata: nil) { (metadata, error) in
                     if error != nil {
                         let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                        self.present(alert, animated: false)
                     } else {
                         imageReference.downloadURL { (url, error) in
                             if error == nil {
@@ -69,6 +70,7 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                 fireStore.collection("Problems").whereField("User", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot, error) in
                                     if error != nil {
                                         let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                        self.present(alert, animated: false)
                                     }
                                 }
                                 
@@ -77,6 +79,7 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                 fireStore.collection("Problems").addDocument(data: firestoreProb) { (error) in
                                     if error != nil {
                                         let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                        self.present(alert, animated: false)
                                     } else {
                                         DispatchQueue.main.async {
                                             self.spinner.dismiss()

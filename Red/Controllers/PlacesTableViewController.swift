@@ -166,5 +166,13 @@ class PlacesTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
     
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return.delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       
+    }
+    
     
 }

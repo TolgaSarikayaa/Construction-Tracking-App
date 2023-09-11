@@ -41,7 +41,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
                 if snapshot?.isEmpty != true {
                     self.problemArray.removeAll(keepingCapacity: false)
                     for document in snapshot!.documents {
-                        let documentId = document.documentID
+                        //let documentId = document.documentID
                         
                         if let problemPerson = document.get("person") as? String {
                             if let imageUrlArray = document.get("image") as? String {
@@ -66,6 +66,31 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
         cell.problemLabel.text = problemArray[indexPath.row].problemExplain
         cell.problemImageView.sd_setImage(with: URL(string: problemArray[indexPath.row].problemImage))
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+            if cell.accessoryType == .checkmark {
+                cell.accessoryType = .none
+                
+            } else {
+                cell.accessoryType = .checkmark
+                cell.backgroundColor = .systemGreen
+            }
+            
+        
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //fireStoreDatabase.collection("Problems").parent?.delete()
+            
+        }
     }
     
     
