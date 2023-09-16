@@ -97,10 +97,10 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(gestureRecognizer)
         
-        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tap)
+        view.endEditing(true)
         
     }
     
@@ -115,14 +115,11 @@ class LoginViewController: UIViewController {
         loginButton.frame = CGRect(x: 30,y: passwordField.bottom+30, width: scrollView.width-60, height: 52)
         
         
+        
+        
     }
     
     // MARK: - Functions
-    @objc func hideKeyboard() {
-        view.endEditing(true)
-    }
-
-    
     @objc private func loginButtonTapped() {
         
         
@@ -160,7 +157,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            let user = result.user
+           // let user = result.user
            
             
         }

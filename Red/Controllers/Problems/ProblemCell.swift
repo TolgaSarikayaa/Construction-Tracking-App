@@ -29,6 +29,8 @@ class ProblemCell: UITableViewCell {
         problemImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
         problemImageView.layer.shadowOpacity = 1
         
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

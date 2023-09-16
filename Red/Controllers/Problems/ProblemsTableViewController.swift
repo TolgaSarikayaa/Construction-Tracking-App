@@ -34,6 +34,10 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
        
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItem.Style.plain, target: self, action: #selector(saveButton))
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tap)
+        view.endEditing(true)
+        
     }
     
     @objc func saveButton() {

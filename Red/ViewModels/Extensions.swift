@@ -47,3 +47,22 @@ extension UIAlertController {
      }
        
 }
+
+extension UIViewController : UIGestureRecognizerDelegate {
+    
+  @objc  public func tapGesture() {
+        
+        let tap = UITapGestureRecognizer()
+        tap.addTarget(self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tap)
+        view.endEditing(true)
+        
+    }
+    
+    
+    
+    
+}
+
+
+

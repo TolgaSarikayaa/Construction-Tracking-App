@@ -136,8 +136,9 @@ class RegisterViewController: UIViewController {
         
         imageView.addGestureRecognizer(gesture)
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(gestureRecognizer)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        view.addGestureRecognizer(tap)
+        view.endEditing(true)
     }
     
     
@@ -164,9 +165,6 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Functions
-    @objc func hideKeyboard() {
-        view.endEditing(true)
-    }
     
     @objc private func registerButtonTapped() {
         
