@@ -59,9 +59,6 @@ extension UIViewController : UIGestureRecognizerDelegate {
         
     }
     
-    
-    
-    
 }
 
 

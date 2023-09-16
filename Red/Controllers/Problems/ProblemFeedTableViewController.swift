@@ -77,10 +77,14 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
             
             if cell.accessoryType == .checkmark {
                 cell.accessoryType = .none
+                cell.backgroundColor = .systemBackground
             } else {
                 cell.accessoryType = .checkmark
+                cell.backgroundColor = .systemGreen
             }
         }
+        
+        tableView.reloadData()
         
     }
     
@@ -91,7 +95,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let media = storageRef.child("problems")
+        
         
         if editingStyle == .delete {
             
