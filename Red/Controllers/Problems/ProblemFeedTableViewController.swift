@@ -37,7 +37,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     func getProblemsFromFirebase() {
         fireStoreDatabase.collection("Problems").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
             if error != nil {
-                let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
             } else {
                 if snapshot?.isEmpty != true {
                     self.problemArray.removeAll(keepingCapacity: false)
@@ -48,9 +48,11 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
                             if let imageUrlArray = document.get("image") as? String {
                                 if let mistake = document.get("mistake") as? String {
                                     
-                                    let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake)
-                                    self.problemArray.append(problem)
-                                    
+                                        
+                                        
+                                        let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake)
+                                        self.problemArray.append(problem)
+                                   
                                 }
                             }
                         }
@@ -66,7 +68,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProblemCell
-        cell.projectPersonLabel.text = "Responsible Engineer: \(problemArray[indexPath.row].projectEngineer)"
+        cell.projectPersonLabel.text = "Engineer: \(problemArray[indexPath.row].projectEngineer)"
         cell.problemLabel.text = "Problem: \(problemArray[indexPath.row].problemExplain)"
         cell.problemImageView.sd_setImage(with: URL(string: problemArray[indexPath.row].problemImage))
         return cell
@@ -94,7 +96,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let storage = Storage.storage()
-        let storageRef = storage.reference()
+       // let storageRef = storage.reference()
         
         
         if editingStyle == .delete {

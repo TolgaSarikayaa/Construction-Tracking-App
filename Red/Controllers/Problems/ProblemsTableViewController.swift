@@ -74,16 +74,17 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                 fireStore.collection("Problems").whereField("User", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot, error) in
                                     if error != nil {
                                         let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
-                                        self.present(alert, animated: false)
+                                        
                                     }
                                 }
+                                
                                 
                                 let firestoreProb = ["image": imageUrl!, "User": PlaceModel.sharedinstance.username, "mistake": self.mistakeText.text!, "date": FieldValue.serverTimestamp(), "person": self.personText.text!] as [String : Any]
                                 
                                 fireStore.collection("Problems").addDocument(data: firestoreProb) { (error) in
                                     if error != nil {
                                         let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
-                                        self.present(alert, animated: false)
+                                        
                                     } else {
                                         DispatchQueue.main.async {
                                             self.spinner.dismiss()

@@ -92,7 +92,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                 imageReference.putData(data, metadata: nil) { (metadata, error) in
                     
                     if error != nil {
-                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription)
+                        _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription)
                     } else {
                         imageReference.downloadURL { (url, error) in
                             if error == nil {
@@ -104,16 +104,16 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                 
                                 firestoreDatabase.collection("Post").whereField("user", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot,error ) in
                                     if error != nil {
-                                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                        _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                      
                                     }
                                 }
                                 
-                                let firestorePost = ["imageUrl" : imageUrl!, "user" : PlaceModel.sharedinstance.username , "postComment" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude, "Engineer": PlaceModel.sharedinstance.engineer, "Budget": PlaceModel.sharedinstance.budget] as [String : Any]
+                                let firestorePost = ["imageUrl" : imageUrl!, "user" : PlaceModel.sharedinstance.username , "structurName" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude, "Engineer": PlaceModel.sharedinstance.engineer, "Budget": PlaceModel.sharedinstance.budget] as [String : Any]
                                 
                                 firestoreReference = firestoreDatabase.collection("Post").addDocument(data: firestorePost, completion: { (error) in
                                     if error != nil {
-                                        let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                        _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                     } else {
                                      
             

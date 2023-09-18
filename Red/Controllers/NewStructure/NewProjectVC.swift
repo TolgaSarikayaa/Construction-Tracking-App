@@ -32,9 +32,6 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseProjectImage))
         projectImageView.addGestureRecognizer(gestureRecognizer)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
-        view.addGestureRecognizer(tap)
-        view.endEditing(true)
         
         
     }

@@ -71,7 +71,7 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                             self.projectImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
                         }
                         
-                        if let postName = document.get("postComment") as? String {
+                        if let postName = document.get("structureName") as? String {
                             self.projectNameLabel.text = postName
                         }
                         

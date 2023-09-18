@@ -82,7 +82,7 @@ class PlacesTableViewController: UITableViewController {
                             self.engineer.append(postedBy)
                         }
                         
-                        if let postComment = document.get("postComment") as? String {
+                        if let postComment = document.get("structurName") as? String {
                             self.placeNameArray.append(postComment)
                         }
                         
@@ -100,8 +100,6 @@ class PlacesTableViewController: UITableViewController {
                   
                 }
                 
-                
-                
             }
             
             
@@ -116,7 +114,7 @@ class PlacesTableViewController: UITableViewController {
                if let email = currentUser.email {
                    fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: email).getDocuments { (snapshot, error) in
                        if error != nil {
-                           let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                           _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                        } else {
                            if let snapshot = snapshot, !snapshot.isEmpty {
                                for document in snapshot.documents {
@@ -137,10 +135,7 @@ class PlacesTableViewController: UITableViewController {
                print("No authenticated user")
            }
 
-        
     }
-    
- 
     
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
