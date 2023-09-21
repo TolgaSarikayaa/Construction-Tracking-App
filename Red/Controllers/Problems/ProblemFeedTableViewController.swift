@@ -23,6 +23,8 @@ class ProblemFeedTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         getProblemsFromFirebase()
       

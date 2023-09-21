@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseDatabase
 import SDWebImage
 import FirebaseAuth
+import FirebaseStorage
 
 class PlacesTableViewController: UITableViewController {
     
@@ -22,23 +23,23 @@ class PlacesTableViewController: UITableViewController {
     var engineer = [String]()
     
     let fireStoreDatabase = Firestore.firestore()
-
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         
-       getDataFromFirestore()
-         
-       getUserInfo()
-      
+        getDataFromFirestore()
+        
+        getUserInfo()
+        
     }
-
+    
     // MARK: - Table view data source
-
-   
-
+    
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return engineer.count
@@ -53,7 +54,6 @@ class PlacesTableViewController: UITableViewController {
         cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
         
         return cell
-        
     }
     
     //MARK: - Funtions
@@ -95,9 +95,9 @@ class PlacesTableViewController: UITableViewController {
                         }
                         
                     }
-                   
+                    
                     self.tableView.reloadData()
-                  
+                    
                 }
                 
             }
@@ -105,69 +105,91 @@ class PlacesTableViewController: UITableViewController {
             
         }
         
-      
+        
     }
     
     func getUserInfo() {
         
         if let currentUser = Auth.auth().currentUser {
-               if let email = currentUser.email {
-                   fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: email).getDocuments { (snapshot, error) in
-                       if error != nil {
-                           _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
-                       } else {
-                           if let snapshot = snapshot, !snapshot.isEmpty {
-                               for document in snapshot.documents {
-                                   if let username = document.get("username") as? String {
-                                       PlaceModel.sharedinstance.email = email
-                                       PlaceModel.sharedinstance.username = username
-                                   }
-                               }
-                           }
-                       }
-                   }
-               } else {
-                   
-                   print("User email is nil")
-               }
-           } else {
-              
-               print("No authenticated user")
-           }
-
+            if let email = currentUser.email {
+                fireStoreDatabase.collection("UserInfo").whereField("email", isEqualTo: email).getDocuments { (snapshot, error) in
+                    if error != nil {
+                        _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                    } else {
+                        if let snapshot = snapshot, !snapshot.isEmpty {
+                            for document in snapshot.documents {
+                                if let username = document.get("username") as? String {
+                                    PlaceModel.sharedinstance.email = email
+                                    PlaceModel.sharedinstance.username = username
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                
+                print("User email is nil")
+            }
+        } else {
+            
+            print("No authenticated user")
+        }
+        
     }
     
-   
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC" {
             
             if let destinationVC = segue.destination as? DetailTableViewController,
-                     let selectedIndex = tableView.indexPathForSelectedRow?.row {
-                      destinationVC.choosenPlaceId = [selectedPlaceId[selectedIndex]]
-                      destinationVC.choosenImage = userImageArray[selectedIndex]
-                      destinationVC.choosenName = placeNameArray[selectedIndex]
-                      destinationVC.choosenType = structureType[selectedIndex]
+               let selectedIndex = tableView.indexPathForSelectedRow?.row {
+                destinationVC.choosenPlaceId = [selectedPlaceId[selectedIndex]]
+                destinationVC.choosenImage = userImageArray[selectedIndex]
+                destinationVC.choosenName = placeNameArray[selectedIndex]
+                destinationVC.choosenType = structureType[selectedIndex]
                 
-                      
-                  }
-              }
-         
-             
+                
+            }
         }
+        
+        
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
+        
         
         self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return.delete
+        return .delete
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-       
+        if editingStyle == .delete {
+            
+            
+            let documentIDToDelete = engineer[indexPath.row]
+            
+            fireStoreDatabase.collection("Post").document(documentIDToDelete).delete { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("Data deleted successfully.")
+                    
+                    
+                        self.engineer.remove(at: indexPath.row)
+                        
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        
+                        tableView.reloadData()
+                        
+                   
+                }
+            }
+            
+        }
+
     }
-    
     
 }
