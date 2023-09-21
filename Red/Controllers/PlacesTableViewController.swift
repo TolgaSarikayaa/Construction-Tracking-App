@@ -169,7 +169,7 @@ class PlacesTableViewController: UITableViewController {
         if editingStyle == .delete {
             
             
-            let documentIDToDelete = engineer[indexPath.row]
+            let documentIDToDelete = selectedPlaceId[indexPath.row]
             
             fireStoreDatabase.collection("Post").document(documentIDToDelete).delete { error in
                 if let error = error {
