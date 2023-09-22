@@ -91,7 +91,7 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                         }
                                         
                                         self.performSegue(withIdentifier: "toProblem", sender: nil)
-                                        self.tabBarController?.selectedIndex = 0
+                                        
                                     }
                                 }
 
@@ -148,10 +148,6 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
         mistakeImageView.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
     }
-
-    
-
-  
 
     @objc func backButton() {
         self.dismiss(animated: true, completion: nil)

@@ -12,5 +12,5 @@ struct Problem {
     var projectEngineer: String
     var problemImage : String
     var problemExplain : String
-    
+    var documentId : String
 }

@@ -17,7 +17,8 @@ class ProblemCell: UITableViewCell {
     
     @IBOutlet var problemLabel: UILabel!
     
-    @IBOutlet var projectNameLabel: UILabel!
+    @IBOutlet weak var documentIdLabel: UILabel!
+    
     
     
     

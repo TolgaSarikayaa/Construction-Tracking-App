@@ -177,14 +177,14 @@ class PlacesTableViewController: UITableViewController {
                 } else {
                     print("Data deleted successfully.")
                     
-                    
-                        self.engineer.remove(at: indexPath.row)
+                    if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                        self.engineer.remove(at: selectedIndexPath.row)
                         
                         tableView.deleteRows(at: [indexPath], with: .fade)
                         
                         tableView.reloadData()
                         
-                   
+                    }
                 }
             }
             

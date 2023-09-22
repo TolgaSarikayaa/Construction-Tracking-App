@@ -13,7 +13,7 @@ import SDWebImage
 import FirebaseAuth
 
 class ProblemFeedTableViewController: UITableViewController {
-
+    
     var problemArray = [Problem]()
     var choosenProblem : Problem?
     
@@ -25,15 +25,15 @@ class ProblemFeedTableViewController: UITableViewController {
         super.viewDidLoad()
         
         
-
-        getProblemsFromFirebase()
-      
-    }
-
-    // MARK: - Table view data source
-override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-    return problemArray.count
+        getProblemsFromFirebase()
+        
+    }
+    
+    // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return problemArray.count
     }
     
     func getProblemsFromFirebase() {
@@ -44,17 +44,20 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
                 if snapshot?.isEmpty != true {
                     self.problemArray.removeAll(keepingCapacity: false)
                     for document in snapshot!.documents {
-                        //let documentId = document.documentID
+                        let documentId = document.documentID
+                        
+                        
+                        
                         
                         if let problemPerson = document.get("person") as? String {
                             if let imageUrlArray = document.get("image") as? String {
                                 if let mistake = document.get("mistake") as? String {
                                     
-                                        
-                                        
-                                        let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake)
-                                        self.problemArray.append(problem)
-                                   
+                                    
+                                    
+                                    let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake, documentId: documentId)
+                                    self.problemArray.append(problem)
+                                    
                                 }
                             }
                         }
@@ -73,6 +76,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
         cell.projectPersonLabel.text = "Engineer: \(problemArray[indexPath.row].projectEngineer)"
         cell.problemLabel.text = "Problem: \(problemArray[indexPath.row].problemExplain)"
         cell.problemImageView.sd_setImage(with: URL(string: problemArray[indexPath.row].problemImage))
+        cell.documentIdLabel.text = choosenProblem?.documentId
         return cell
     }
     
@@ -97,14 +101,32 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let storage = Storage.storage()
-       // let storageRef = storage.reference()
-        
-        
         if editingStyle == .delete {
             
+            let documentIdToDelete = problemArray[indexPath.row].documentId
+            
+            fireStoreDatabase.collection("Problems").document(documentIdToDelete).delete { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("data deleted successfuly")
+                    
+                    if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                        
+                        if selectedIndexPath.row < self.problemArray.count {
+                            self.problemArray.remove(at: selectedIndexPath.row)
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                            tableView.reloadData()
+                        } else {
+                            print("invalid index")
+                        }
+                    }
+                }
+            }
+            
         }
+        
+        
     }
     
-
 }
