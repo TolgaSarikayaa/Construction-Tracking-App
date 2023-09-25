@@ -33,6 +33,21 @@ class RegisterViewController: UIViewController {
         return imageView
         
     }()
+   
+    private let companyNameField: UITextField = {
+        let field = UITextField()
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 12
+        field.layer.borderWidth = 1
+        field.layer.borderColor = UIColor.lightGray.cgColor
+        field.placeholder = "Company Name..."
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        field.leftViewMode = .always
+        return field
+        
+    }()
     
     private let firstNameField: UITextField = {
         let field = UITextField()
@@ -123,6 +138,7 @@ class RegisterViewController: UIViewController {
         // Add subviews
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
+        scrollView.addSubview(companyNameField)
         scrollView.addSubview(firstNameField)
         scrollView.addSubview(lastNameField)
         scrollView.addSubview(emailField)
@@ -155,7 +171,8 @@ class RegisterViewController: UIViewController {
         
         imageView.frame = CGRect(x: (scrollView.width-size)/2, y: 20, width: size, height: size)
         imageView.layer.cornerRadius = imageView.width/2.0
-        firstNameField.frame = CGRect(x: 30,y: imageView.bottom+10, width: scrollView.width-60, height: 52)
+        companyNameField.frame = CGRect(x: 30, y: imageView.bottom+10, width: scrollView.width-60, height: 52)
+        firstNameField.frame = CGRect(x: 30,y: companyNameField.bottom+10, width: scrollView.width-60, height: 52)
         lastNameField.frame = CGRect(x: 30,y: firstNameField.bottom+10, width: scrollView.width-60, height: 52)
         emailField.frame = CGRect(x: 30,y: lastNameField.bottom+10, width: scrollView.width-60, height: 52)
         passwordField.frame = CGRect(x: 30,y: emailField.bottom+10, width: scrollView.width-60, height: 52)
@@ -173,10 +190,13 @@ class RegisterViewController: UIViewController {
         firstNameField.resignFirstResponder()
         lastNameField.resignFirstResponder()
         
-        guard let firstName = firstNameField.text,
+        guard 
+             let companyName = companyNameField.text,
+              let firstName = firstNameField.text,
               let lastName = lastNameField.text,
               let email = emailField.text, let password = passwordField.text,
               !email.isEmpty, !password.isEmpty,
+              !companyName.isEmpty,
               !firstName.isEmpty,
               !lastName.isEmpty,
               password.count >= 6 else {
@@ -197,7 +217,7 @@ class RegisterViewController: UIViewController {
             
             let fireStore = Firestore.firestore()
             
-            let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!] as [String : Any]
+            let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!, "company" : self.companyNameField.text!] as [String : Any]
             fireStore.collection("UserInfo").addDocument(data: userDictionary) { (error) in
                 if error != nil {
                     

@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To see your Location</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -27,9 +25,5 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Please allow acces to select a photo for your profile.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Please allow acces to take a profile picture</string>
 </dict>
 </plist>

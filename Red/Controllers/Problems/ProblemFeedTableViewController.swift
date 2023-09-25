@@ -16,7 +16,7 @@ class ProblemFeedTableViewController: UITableViewController {
     
     var problemArray = [Problem]()
     var choosenProblem : Problem?
-    
+    var selectedProblem : Problem?
     
     
     let fireStoreDatabase = Firestore.firestore()
@@ -46,14 +46,9 @@ class ProblemFeedTableViewController: UITableViewController {
                     for document in snapshot!.documents {
                         let documentId = document.documentID
                         
-                        
-                        
-                        
                         if let problemPerson = document.get("person") as? String {
                             if let imageUrlArray = document.get("image") as? String {
                                 if let mistake = document.get("mistake") as? String {
-                                    
-                                    
                                     
                                     let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake, documentId: documentId)
                                     self.problemArray.append(problem)
@@ -80,53 +75,58 @@ class ProblemFeedTableViewController: UITableViewController {
         return cell
     }
     
+   
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
-            
-            if cell.accessoryType == .checkmark {
-                cell.accessoryType = .none
-                cell.backgroundColor = .systemBackground
-            } else {
-                cell.accessoryType = .checkmark
-                cell.backgroundColor = .systemGreen
-            }
+         
+         if cell.accessoryType == .checkmark {
+         cell.accessoryType = .none
+         cell.backgroundColor = .systemBackground
+         } else {
+         cell.accessoryType = .checkmark
+         cell.backgroundColor = .systemGreen
+        }
+   }
+         
+         tableView.reloadData()
+         
+    }
+         
+    
+        override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+            return .delete
         }
         
-        tableView.reloadData()
-        
-    }
-    
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-            let documentIdToDelete = problemArray[indexPath.row].documentId
-            
-            fireStoreDatabase.collection("Problems").document(documentIdToDelete).delete { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print("data deleted successfuly")
-                    
-                    if let selectedIndexPath = tableView.indexPathForSelectedRow {
+        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                
+                let documentIdToDelete = problemArray[indexPath.row].documentId
+                
+                fireStoreDatabase.collection("Problems").document(documentIdToDelete).delete { error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        print("data deleted successfuly")
                         
-                        if selectedIndexPath.row < self.problemArray.count {
-                            self.problemArray.remove(at: selectedIndexPath.row)
-                            tableView.deleteRows(at: [indexPath], with: .fade)
-                            tableView.reloadData()
-                        } else {
-                            print("invalid index")
+                        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                            
+                            if selectedIndexPath.row < self.problemArray.count {
+                                self.problemArray.remove(at: selectedIndexPath.row)
+                                tableView.deleteRows(at: [indexPath], with: .fade)
+                                tableView.reloadData()
+                            } else {
+                                print("invalid index")
+                            }
                         }
                     }
                 }
+                
             }
+            
             
         }
         
         
-    }
     
 }

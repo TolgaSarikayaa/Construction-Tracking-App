@@ -31,8 +31,8 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
     var choosenImageArray = [String]()
     
     var choosenImage: String = ""
-    var choosenName: String = ""
-    var choosenType: String = ""
+    var choosenName : String = ""
+    var choosenType : String = ""
 
     
     override func viewDidLoad() {
@@ -69,8 +69,9 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                         
                         if let imageUrl = document.get("imageUrl") as? String {
                             self.projectImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
+                         
                         }
-                        
+                       
                         if let postName = document.get("structureName") as? String {
                             self.projectNameLabel.text = postName
                         }
@@ -115,7 +116,7 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
         
         
     }
-    
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
