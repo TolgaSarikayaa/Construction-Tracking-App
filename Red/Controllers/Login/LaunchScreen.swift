@@ -26,8 +26,11 @@ class LaunchScreen: UIViewController {
         startButton.layer.cornerRadius = 15
         startButton.layer.masksToBounds = true
         
-        welcomeLabel.font = .systemFont(ofSize: 46, weight: .heavy)
-        projectLabel.font = .systemFont(ofSize: 30, weight: .heavy)
+        
+        welcomeLabel.font = UIFont(name: "CroissantOne-Regular", size: 45)
+        projectLabel.font = UIFont(name: "CroissantOne-Regular", size: 28)
+     
+        
         
         
         

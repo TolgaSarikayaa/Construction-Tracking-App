@@ -42,6 +42,7 @@
 		14B56CEA2AAC7DEF00D7EB85 /* ProblemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */; };
 		14B56CEC2AAC84AA00D7EB85 /* ProblemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B56CEB2AAC84AA00D7EB85 /* ProblemModel.swift */; };
 		14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BCBE112A9161E200BDAD9B /* FeedCell.swift */; };
+		14F7A4602AC3685900023962 /* CroissantOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14F7A45F2AC3685900023962 /* CroissantOne-Regular.ttf */; };
 		3388B2C6EAA6799203563CFE /* Pods_Red_RedUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0B25378FA79476D7E1C1D /* Pods_Red_RedUITests.framework */; };
 		3FD6C94F62B40EFB46A755E5 /* Pods_Red.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45425C822BDDEC1F00AA38F4 /* Pods_Red.framework */; };
 		D069A1B9EF8E0B7312158271 /* Pods_RedTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E4E5E649847E36E6DABA6D /* Pods_RedTests.framework */; };
@@ -97,6 +98,7 @@
 		14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCell.swift; sourceTree = "<group>"; };
 		14B56CEB2AAC84AA00D7EB85 /* ProblemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemModel.swift; sourceTree = "<group>"; };
 		14BCBE112A9161E200BDAD9B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		14F7A45F2AC3685900023962 /* CroissantOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CroissantOne-Regular.ttf"; sourceTree = "<group>"; };
 		17623A11065D2B74E88E7CB0 /* Pods-Red-RedUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red-RedUITests.release.xcconfig"; path = "Target Support Files/Pods-Red-RedUITests/Pods-Red-RedUITests.release.xcconfig"; sourceTree = "<group>"; };
 		20A504F1BA3C9AF42ABDF342 /* Pods-Red-RedUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red-RedUITests.debug.xcconfig"; path = "Target Support Files/Pods-Red-RedUITests/Pods-Red-RedUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2AF32C38501D271C2C118C42 /* Pods-Red.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Red.debug.xcconfig"; path = "Target Support Files/Pods-Red/Pods-Red.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				145E699D2A40B9C9008FB01C /* LoginViewController.swift */,
 				145E69A12A40B9D3008FB01C /* RegisterViewController.swift */,
 				141D8D032AA376820071348B /* LaunchScreen.swift */,
+				14F7A45E2AC3684800023962 /* Fonts */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -286,6 +289,14 @@
 				141D8D0B2AA91A720071348B /* DetailTableViewController.swift */,
 			);
 			path = NewStructure;
+			sourceTree = "<group>";
+		};
+		14F7A45E2AC3684800023962 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				14F7A45F2AC3685900023962 /* CroissantOne-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		486B839A81D10926EE253482 /* Pods */ = {
@@ -410,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F7A4602AC3685900023962 /* CroissantOne-Regular.ttf in Resources */,
 				145E696F2A40B877008FB01C /* LaunchScreen.storyboard in Resources */,
 				145E69A62A44CBCC008FB01C /* GoogleService-Info.plist in Resources */,
 				145E696C2A40B877008FB01C /* Assets.xcassets in Resources */,
