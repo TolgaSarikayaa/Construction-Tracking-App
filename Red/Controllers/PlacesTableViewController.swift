@@ -64,15 +64,15 @@ class PlacesTableViewController: UITableViewController {
             if error != nil {
                 print(error?.localizedDescription)
             } else {
-                if snapshot?.isEmpty != true {
+                if let snapshot = snapshot {
                     
-                    self.userImageArray.removeAll(keepingCapacity: false)
-                    self.engineer.removeAll(keepingCapacity: false)
-                    self.placeNameArray.removeAll(keepingCapacity: false)
-                    self.selectedPlaceId.removeAll(keepingCapacity: false)
-                    self.structureType.removeAll(keepingCapacity: false)
+                    self.userImageArray.removeAll()
+                    self.engineer.removeAll()
+                    self.placeNameArray.removeAll()
+                    self.selectedPlaceId.removeAll()
+                    self.structureType.removeAll()
                     
-                    for document in snapshot!.documents {
+                    for document in snapshot.documents {
                         let documentID = document.documentID
                         
                         self.selectedPlaceId.append(documentID)
@@ -147,6 +147,8 @@ class PlacesTableViewController: UITableViewController {
                 destinationVC.choosenImage = userImageArray[selectedIndex]
                 destinationVC.choosenName = placeNameArray[selectedIndex]
                 destinationVC.choosenType = structureType[selectedIndex]
+                destinationVC.choosenEnginer = engineer[selectedIndex]
+                
                 
                 
             }
