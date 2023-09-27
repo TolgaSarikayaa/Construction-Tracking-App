@@ -90,8 +90,10 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                             self.spinner.dismiss()
                                         }
                                         
-                                       self.performSegue(withIdentifier: "toProblem", sender: nil)
-                                        self.tabBarController?.selectedIndex = 2
+                                        
+                                      // self.performSegue(withIdentifier: "toProblemFeed", sender: nil)
+                                        //self.tabBarController?.selectedIndex = 2
+                                        self.navigationController?.dismiss(animated: true)
                                         
                                     }
                                 }

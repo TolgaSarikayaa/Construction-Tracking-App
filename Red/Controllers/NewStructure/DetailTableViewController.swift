@@ -41,7 +41,7 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
         
         projectLocation.delegate = self
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backButton))
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(addButton))
+        
         
         getDataFromPost()
 
@@ -182,9 +182,6 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func addButton() {
-        performSegue(withIdentifier: "toProblem", sender: nil)
-    }
-
+  
 
 }

@@ -61,5 +61,18 @@ extension UIViewController : UIGestureRecognizerDelegate {
     
 }
 
+extension UINavigationController {
+    
+    
+  public func setBackground() {
+        
+      let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor.systemBlue
+        navigationBar.standardAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+    }
+}
+
 
 

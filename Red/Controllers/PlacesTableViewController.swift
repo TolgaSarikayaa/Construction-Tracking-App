@@ -27,7 +27,19 @@ class PlacesTableViewController: UITableViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
+        navigationController?.setBackground()
+        
+       
+        
+        let appearance = UITabBarAppearance()
+        appearance.stackedLayoutAppearance.normal.iconColor = UIColor.black
+        appearance.stackedLayoutAppearance.selected.iconColor = UIColor.red
+        appearance.backgroundColor = UIColor.systemBlue
+    
+            tabBarController?.tabBar.standardAppearance = appearance
+        tabBarController?.tabBar.scrollEdgeAppearance = tabBarController?.tabBar.standardAppearance
         
         
         getDataFromFirestore()

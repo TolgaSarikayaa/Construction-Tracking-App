@@ -295,14 +295,13 @@
                         <outlet property="projectLocation" destination="UHV-Yz-AJQ" id="ScB-Tt-Sd9"/>
                         <outlet property="projectNameLabel" destination="wEr-LX-g0f" id="Ogk-dI-NnQ"/>
                         <outlet property="projectTypeLabel" destination="sr1-px-ROq" id="HAF-nm-jxW"/>
-                        <segue destination="xJY-Jl-bC2" kind="presentation" identifier="toProblem" modalPresentationStyle="fullScreen" id="QvS-5D-Oda"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ifn-eH-UZA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5550.3816793893129" y="41.549295774647888"/>
+            <point key="canvasLocation" x="5615" y="42"/>
         </scene>
-        <!--Problem-->
+        <!--Add Problem-->
         <scene sceneID="2OQ-OD-neH">
             <objects>
                 <tableViewController id="LcQ-5r-dRQ" customClass="ProblemsTableViewController" customModule="Red" customModuleProvider="target" sceneMemberID="viewController">
@@ -379,17 +378,17 @@
                             <outlet property="delegate" destination="LcQ-5r-dRQ" id="sv7-sc-vKs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Problem" id="p4P-VD-izA"/>
+                    <navigationItem key="navigationItem" title="Add Problem" id="p4P-VD-izA"/>
                     <connections>
                         <outlet property="mistakeImageView" destination="Qy0-iW-LmQ" id="kJJ-02-leC"/>
                         <outlet property="mistakeText" destination="Xuw-87-bzy" id="e3F-ml-fnz"/>
                         <outlet property="personText" destination="Q1C-og-DpS" id="UNG-2P-y6x"/>
-                        <segue destination="f6U-wS-iK8" kind="presentation" identifier="toProblem" modalPresentationStyle="fullScreen" id="EH7-e1-RBE"/>
+                        <segue destination="Bab-4h-liB" kind="presentation" identifier="toProblemFeed" modalPresentationStyle="fullScreen" id="u74-pp-Nqd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sc4-3I-C1P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7333.5877862595416" y="41.549295774647888"/>
+            <point key="canvasLocation" x="5615" y="1532"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mtU-uZ-XiB">
@@ -399,7 +398,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2e5-lP-UT9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="fbD-iD-YSh" kind="relationship" relationship="viewControllers" id="iSG-EL-vFf"/>
@@ -502,6 +500,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Problems" id="pku-Rw-9W4"/>
+                    <connections>
+                        <segue destination="xJY-Jl-bC2" kind="presentation" identifier="toProblem" modalPresentationStyle="fullScreen" id="Hos-dG-L1I"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KwX-97-h3P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -620,14 +621,14 @@
                             <tableViewSection headerTitle="Select Location" id="sRf-Tw-Zit">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="z4E-CB-p8B">
-                                        <rect key="frame" x="20" y="705.00000190734863" width="353" height="43"/>
+                                        <rect key="frame" x="20" y="705.00000190734863" width="353" height="43.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="z4E-CB-p8B" id="bK1-c6-zqF">
-                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="322.66666666666669" height="43.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eao-k7-lIE">
-                                                    <rect key="frame" x="20" y="11" width="295" height="21"/>
+                                                    <rect key="frame" x="20" y="10.999999999999998" width="295" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -877,7 +878,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSz-7n-jyL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6382.4427480916029" y="41.549295774647888"/>
+            <point key="canvasLocation" x="4720" y="1532"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gek-Qx-FZy">
@@ -920,6 +921,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6m9-4c-S4C"/>
+        <segue reference="u74-pp-Nqd"/>
         <segue reference="RSX-JZ-aab"/>
     </inferredMetricsTieBreakers>
     <resources>

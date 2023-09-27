@@ -24,6 +24,13 @@ class ProblemFeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor.systemRed
+            navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(addButton))
         
         
         getProblemsFromFirebase()
@@ -126,6 +133,10 @@ class ProblemFeedTableViewController: UITableViewController {
             
             
         }
+    
+    @objc func addButton() {
+        performSegue(withIdentifier: "toProblem", sender: nil)
+    }
         
         
     
