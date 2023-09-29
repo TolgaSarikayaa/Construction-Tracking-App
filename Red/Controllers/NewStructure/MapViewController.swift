@@ -73,6 +73,9 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     }
     
     @objc func saveButton() {
+        
+        
+        
         if PlaceModel.sharedinstance.placeLatitude == "" && PlaceModel.sharedinstance.placeLongitude == "" {
             let alert = UIAlertController.Alert(title: "Error", message: "Please select your coordinate", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
@@ -107,6 +110,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                         _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                      
                                     }
+                                   
                                 }
                                 
                                 let firestorePost = ["imageUrl" : imageUrl!, "user" : PlaceModel.sharedinstance.username , "structurName" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude, "Engineer": PlaceModel.sharedinstance.engineer, "Budget": PlaceModel.sharedinstance.budget] as [String : Any]
@@ -115,7 +119,6 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                     if error != nil {
                                         _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                     } else {
-                                     
             
                                         DispatchQueue.main.async {
                                             self.spinner.dismiss()

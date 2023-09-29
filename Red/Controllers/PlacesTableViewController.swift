@@ -22,25 +22,14 @@ class PlacesTableViewController: UITableViewController {
     var selectedPlaceId = [String]()
     var engineer = [String]()
     
+    
     let fireStoreDatabase = Firestore.firestore()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
-        navigationController?.setBackground()
-        
-       
-        
-        let appearance = UITabBarAppearance()
-        appearance.stackedLayoutAppearance.normal.iconColor = UIColor.black
-        appearance.stackedLayoutAppearance.selected.iconColor = UIColor.red
-        appearance.backgroundColor = UIColor.systemBlue
-    
-            tabBarController?.tabBar.standardAppearance = appearance
-        tabBarController?.tabBar.scrollEdgeAppearance = tabBarController?.tabBar.standardAppearance
-        
+        tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         
         getDataFromFirestore()
         
@@ -65,12 +54,16 @@ class PlacesTableViewController: UITableViewController {
         cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
         cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
         
+        cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        cell.cellBackground.layer.cornerRadius = 14.0
+        
         return cell
     }
     
     //MARK: - Funtions
     func getDataFromFirestore() {
         
+       
         
         fireStoreDatabase.collection("Post").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
             if error != nil {
@@ -83,6 +76,8 @@ class PlacesTableViewController: UITableViewController {
                     self.placeNameArray.removeAll()
                     self.selectedPlaceId.removeAll()
                     self.structureType.removeAll()
+                    
+                    
                     
                     for document in snapshot.documents {
                         let documentID = document.documentID
@@ -108,7 +103,9 @@ class PlacesTableViewController: UITableViewController {
                         
                     }
                     
-                    self.tableView.reloadData()
+                    
+                     self.tableView.reloadData()
+                    
                     
                 }
                 

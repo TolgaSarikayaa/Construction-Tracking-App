@@ -20,6 +20,7 @@ class FeedCell: UITableViewCell {
     
     @IBOutlet var structureTypeLabel: UILabel!
     
+    @IBOutlet weak var cellBackground: UIView!
     
     
     override func awakeFromNib() {
