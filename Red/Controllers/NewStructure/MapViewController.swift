@@ -11,6 +11,7 @@ import FirebaseStorage
 import FirebaseAuth
 import FirebaseFirestore
 import JGProgressHUD
+import UserNotifications
 
 class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -21,9 +22,22 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     
     private let spinner = JGProgressHUD(style: .dark)
     
+    var permissionCheck = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { granted, error in
+            self.permissionCheck = granted
+            
+            if granted {
+                print("permission was successful")
+            } else {
+                print("permission was failed")
+            }
+        }
 
        
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItem.Style.plain, target: self, action: #selector(saveButton))
@@ -124,7 +138,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                             self.spinner.dismiss()
                                         }
                                        
-                                        
+                                        self.notification()
                                         self.performSegue(withIdentifier: "toMain", sender: nil)
                                         
                                     }
@@ -148,5 +162,34 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
         
     }
     
+    func notification() {
+        if permissionCheck {
+            let contents = UNMutableNotificationContent()
+            contents.title = "Project"
+            contents.body = "New Project Added"
+            contents.badge = 1
+            contents.sound = UNNotificationSound.default
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+            let notificationRequest = UNNotificationRequest(identifier: "id", content: contents, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(notificationRequest)
+            
+          
+            
+        }
+    }
+}
 
+extension MapViewController : UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner,.sound,.badge])
+        
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        UNUserNotificationCenter.current().setBadgeCount(0, withCompletionHandler: nil)
+    }
+    
 }
