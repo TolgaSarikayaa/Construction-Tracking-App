@@ -20,6 +20,7 @@ class ProblemCell: UITableViewCell {
     @IBOutlet weak var documentIdLabel: UILabel!
     
     
+    @IBOutlet weak var cellBackground: UIView!
     
     
     override func awakeFromNib() {

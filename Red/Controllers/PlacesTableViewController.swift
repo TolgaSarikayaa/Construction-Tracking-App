@@ -23,6 +23,7 @@ class PlacesTableViewController: UITableViewController {
     var engineer = [String]()
     
     
+    
     let fireStoreDatabase = Firestore.firestore()
     
     // MARK: - Life Cycle
@@ -150,21 +151,33 @@ class PlacesTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC" {
             
-            if let destinationVC = segue.destination as? DetailTableViewController,
-               let selectedIndex = tableView.indexPathForSelectedRow?.row {
+            if let project = sender as? PlaceModel {
+            let destinationVC = segue.destination as! DetailTableViewController
+                destinationVC.choosenName = project.structureName
+                destinationVC.choosenType = project.structureType
+                //destinationVC.choosenImage = project.placeImage
+                destinationVC.choosenEnginer = project.engineer
+                destinationVC.choosenBudget = project.budget
+                destinationVC.choosenLatitude = Double(project.placeLatitude)!
+                destinationVC.choosenLongitude = Double(project.placeLongitude)!
+                
+                
+            }
+                
+                /*
                 destinationVC.choosenPlaceId = [selectedPlaceId[selectedIndex]]
                 destinationVC.choosenImage = userImageArray[selectedIndex]
                 destinationVC.choosenName = placeNameArray[selectedIndex]
                 destinationVC.choosenType = structureType[selectedIndex]
                 destinationVC.choosenEnginer = engineer[selectedIndex]
                 
-                
+               */
                 
             }
         }
         
         
-    }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

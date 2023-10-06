@@ -34,7 +34,9 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
     var choosenName : String = ""
     var choosenType : String = ""
     var choosenEnginer : String = ""
-    var choosenBudget = [String]()
+    var choosenBudget : String = ""
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,8 +70,10 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                     
                     
                     for document in snapshot!.documents {
-                        let documentId = document.documentID
-                        self.choosenPlaceId.append(documentId)
+                        let data = document.data()
+                        let projectId = document.documentID
+                        
+                        //self.choosenPlaceId.append(projectId)
                         
                         if let imageUrl = document.get("imageUrl") as? String {
                             self.choosenImage = imageUrl
@@ -77,64 +81,57 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                             
                         }
                         
-                        if let postName = document.get("structurName") as? String {
+                        if let postName = data["structurName"] as? String {
                             self.choosenName = postName
                             self.projectNameLabel.text = postName
                             
                             
                         }
                         
-                        if let postStructureType = document.get("structureType") as? String {
+                        if let postStructureType = data["structureType"] as? String {
                             self.choosenType = postStructureType
                             self.projectTypeLabel.text = postStructureType
                             
                         }
                         
-                        if let postEnginnerName = document.get("Engineer") as? String {
+                        if let postEnginnerName = data["Engineer"] as? String {
                             self.choosenEnginer = postEnginnerName
                             self.engineerLabel.text = postEnginnerName
                         }
                         
                         
-                        if let postBudget = document.get("Budget") as? String {
+                        if let postBudget = data["Budget"] as? String {
                             self.budgetLabel.text = postBudget
                         }
                         
-                        firestoreData.collection("Post").document(self.choosenPlaceId[0]).getDocument { (document, error) in
-                            if let document = document, document.exists {
-                                
-                                if let postLatitude = document.get("placelatitude") as? String, let placelatitude = Double(postLatitude),
-                                   let postLongitude = document.get("placeLongitude") as? String, let placeLongitude = Double(postLongitude) 
-                                {
-                                    
-                                    self.choosenLatitude = placelatitude
-                                    self.choosenLongitude = placeLongitude
-                                    
-                                    let location = CLLocationCoordinate2D(latitude: self.choosenLatitude, longitude: self.choosenLongitude)
-                                    let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-                                    let region = MKCoordinateRegion(center: location, span: span)
-                                    self.projectLocation.setRegion(region, animated: true)
-                                    
-                                    let annotation = MKPointAnnotation()
-                                    annotation.coordinate = location
-                                    annotation.title = self.projectNameLabel.text
-                                    self.projectLocation.addAnnotation(annotation)
-                                    
-                                }
-                            }
+                        if let postLatitude = data["placelatitude"] as? String, let placelatitude = Double(postLatitude),
+                                                  let postLongitude = data["placeLongitude"] as? String, let placeLongitude = Double(postLongitude) {
+                                                   self.choosenLatitude = placelatitude
+                                                   self.choosenLongitude = placeLongitude
+
+                                                   let location = CLLocationCoordinate2D(latitude: self.choosenLatitude, longitude: self.choosenLongitude)
+                                                   let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
+                                                   let region = MKCoordinateRegion(center: location, span: span)
+                                                   self.projectLocation.setRegion(region, animated: true)
+
+                                                   let annotation = MKPointAnnotation()
+                                                   annotation.coordinate = location
+                                                   annotation.title = self.projectNameLabel.text
+                                                   self.projectLocation.addAnnotation(annotation)
                             
                         }
                         
                        
                     }
-                    
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
+                
             }
             
         }
         
     }
+  
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {

@@ -18,6 +18,7 @@ class ProblemFeedTableViewController: UITableViewController {
     var choosenProblem : Problem?
     var selectedProblem : Problem?
     
+   
     
     let fireStoreDatabase = Firestore.firestore()
     
@@ -32,6 +33,7 @@ class ProblemFeedTableViewController: UITableViewController {
         
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(addButton))
         
+        tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         
         getProblemsFromFirebase()
         
@@ -69,8 +71,11 @@ class ProblemFeedTableViewController: UITableViewController {
                     self.tableView.reloadData()
                     
                 }
+                
             }
         }
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,24 +84,28 @@ class ProblemFeedTableViewController: UITableViewController {
         cell.problemLabel.text = "Problem: \(problemArray[indexPath.row].problemExplain)"
         cell.problemImageView.sd_setImage(with: URL(string: problemArray[indexPath.row].problemImage))
         cell.documentIdLabel.text = choosenProblem?.documentId
+        
+        cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        cell.cellBackground.layer.cornerRadius = 16.0
+        
         return cell
     }
     
    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath as IndexPath)  {
          
          if cell.accessoryType == .checkmark {
          cell.accessoryType = .none
-         cell.backgroundColor = .systemBackground
+         //cell.backgroundColor = .systemBackground
          } else {
          cell.accessoryType = .checkmark
-         cell.backgroundColor = .systemGreen
+            // cell.backgroundColor = .systemGreen
         }
    }
          
-         tableView.reloadData()
+        //self.tableView.reloadData()   
          
     }
          
