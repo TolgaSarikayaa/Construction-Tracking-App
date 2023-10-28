@@ -56,14 +56,10 @@ extension UIViewController : UIGestureRecognizerDelegate {
         tap.addTarget(self, action: #selector(tapGesture))
         view.addGestureRecognizer(tap)
         view.endEditing(true)
-        
     }
-    
 }
 
 extension UINavigationController {
-    
-    
   public func setBackground() {
         
       let appearance = UINavigationBarAppearance()

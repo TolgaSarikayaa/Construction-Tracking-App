@@ -9,16 +9,12 @@ import UIKit
 import FirebaseAuth
 
 class ProfilViewController: UIViewController {
-    
-   
-
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
         return scrollView
     }()
     
-   
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
@@ -28,9 +24,7 @@ class ProfilViewController: UIViewController {
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
-        
     }()
-    
     private let logOutButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log Out", for: .normal)
@@ -40,7 +34,6 @@ class ProfilViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         return button
     }()
-    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -73,8 +66,5 @@ class ProfilViewController: UIViewController {
         } catch {
             print("Error")
         }
-    
     }
-    
-
 }

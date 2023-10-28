@@ -14,45 +14,36 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
 
     // MARK: - UI Elements
     @IBOutlet var projectNameLabel: UILabel!
-    
     @IBOutlet var projectTypeLabel: UILabel!
-    
     @IBOutlet var engineerLabel: UILabel!
-    
     @IBOutlet var budgetLabel: UILabel!
-    
     @IBOutlet var projectImageView: UIImageView!
-    
     @IBOutlet var projectLocation: MKMapView!
     
+    // MARK: - Properties
     var choosenPlaceId = [String]()
     var choosenLatitude = Double()
     var choosenLongitude = Double()
     var choosenImageArray = [String]()
-    
     var choosenImage: String = ""
     var choosenName : String = ""
     var choosenType : String = ""
     var choosenEnginer : String = ""
     var choosenBudget : String = ""
-    
-    
-    
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         projectLocation.delegate = self
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backButton))
-        
-        
+    
         getDataFromPost()
-
     }
 
     // MARK: - Functions
     
     func getDataFromPost() {
-        
         let firestoreData = Firestore.firestore()
         
         firestoreData.collection("Post").addSnapshotListener { (snapshot, error) in
@@ -65,41 +56,30 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                     self.choosenName.removeAll(keepingCapacity: false)
                     self.choosenType.removeAll(keepingCapacity: false)
                     
-                    
-                    
-                    
-                    
                     for document in snapshot!.documents {
                         let data = document.data()
                         let projectId = document.documentID
                         
-                        //self.choosenPlaceId.append(projectId)
-                        
                         if let imageUrl = document.get("imageUrl") as? String {
                             self.choosenImage = imageUrl
                             self.projectImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
-                            
                         }
                         
                         if let postName = data["structurName"] as? String {
                             self.choosenName = postName
                             self.projectNameLabel.text = postName
-                            
-                            
                         }
                         
                         if let postStructureType = data["structureType"] as? String {
                             self.choosenType = postStructureType
                             self.projectTypeLabel.text = postStructureType
-                            
                         }
                         
                         if let postEnginnerName = data["Engineer"] as? String {
                             self.choosenEnginer = postEnginnerName
                             self.engineerLabel.text = postEnginnerName
                         }
-                        
-                        
+                
                         if let postBudget = data["Budget"] as? String {
                             self.budgetLabel.text = postBudget
                         }
@@ -118,28 +98,18 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                                                    annotation.coordinate = location
                                                    annotation.title = self.projectNameLabel.text
                                                    self.projectLocation.addAnnotation(annotation)
-                            
                         }
-                        
-                       
                     }
                     self.tableView.reloadData()
                 }
-                
             }
-            
         }
-        
     }
-  
-
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }
-        
         let reuseId = "pin"
-        
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
         
         if pinView == nil {
@@ -150,7 +120,6 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
         } else {
             pinView?.annotation = annotation
         }
-        
         return pinView
     }
     
@@ -161,7 +130,6 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
             CLGeocoder().reverseGeocodeLocation(requestLocation) { (placemarks, error) in
                 if let placemark = placemarks {
                     if placemark.count > 0 {
-                        
                         let mkPlaceMark = MKPlacemark(placemark: placemark[0])
                         let mapItem = MKMapItem(placemark: mkPlaceMark)
                         mapItem.name = self.projectNameLabel.text
@@ -174,11 +142,8 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
            
         }
     }
-    
     @objc func backButton() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-  
 
 }

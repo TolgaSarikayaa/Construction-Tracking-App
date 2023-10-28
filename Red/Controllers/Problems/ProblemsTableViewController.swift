@@ -16,16 +16,14 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
     
     // MARK: - UI Elements
     @IBOutlet var mistakeText: UITextField!
-    
     @IBOutlet var personText: UITextField!
-    
-    
     @IBOutlet var mistakeImageView: UIImageView!
     
+    // MARK: - Properties
     private let spinner = JGProgressHUD(style: .dark)
-    
     var permissionCheck = false
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,9 +45,7 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
            
         }
     }
-            
-        
-        
+        // MARK: - Actions
         @objc func saveButton() {
             
             if mistakeText.text == "" && personText.text == "" && mistakeImageView == nil {
@@ -84,42 +80,29 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                     fireStore.collection("Problems").whereField("User", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot, error) in
                                         if error != nil {
                                             let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
-                                            
                                         }
                                     }
-                                    
-                                    
                                     let firestoreProb = ["image": imageUrl!, "User": PlaceModel.sharedinstance.username, "mistake": self.mistakeText.text!, "date": FieldValue.serverTimestamp(), "person": self.personText.text!] as [String : Any]
                                     
                                     fireStore.collection("Problems").addDocument(data: firestoreProb) { (error) in
                                         if error != nil {
                                             let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
-                                            
                                         } else {
                                             DispatchQueue.main.async {
                                                 self.spinner.dismiss()
                                             }
-                                            
-                                            
                                             // self.performSegue(withIdentifier: "toProblemFeed", sender: nil)
                                             //self.tabBarController?.selectedIndex = 2
                                             self.notification2()
                                             self.navigationController?.dismiss(animated: true)
-                                            
                                         }
                                     }
-                                    
                                 }
                             }
                         }
                     }
-                    
                 }
-                
-                
             }
-            
-            
         }
         
         
@@ -167,7 +150,6 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
             self.dismiss(animated: true, completion: nil)
         }
         
-        
         func notification2() {
             if permissionCheck {
                 let contents = UNMutableNotificationContent()
@@ -180,25 +162,20 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                 let notificationRequest = UNNotificationRequest(identifier: "id2", content: contents, trigger: trigger)
                 
                 UNUserNotificationCenter.current().add(notificationRequest)
-                
-                
-                
             }
         }
         
     }
     
+// MARK: - Extension
     extension ProblemsTableViewController : UNUserNotificationCenterDelegate {
         func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
             completionHandler([.banner,.sound,.badge])
-            
-            
         }
         
         func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
             UNUserNotificationCenter.current().setBadgeCount(0, withCompletionHandler: nil)
         }
-        
     }
     
 

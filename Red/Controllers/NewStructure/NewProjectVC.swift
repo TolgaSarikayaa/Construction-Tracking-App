@@ -10,21 +10,13 @@ import UIKit
 class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK:  - UI Elements
-    
     @IBOutlet var projectName: UITextField!
-    
     @IBOutlet var projectType: UITextField!
-    
     @IBOutlet var projectImageView: UIImageView!
-    
     @IBOutlet var engineerName: UITextField!
-    
     @IBOutlet var budget: UITextField!
-    
-    
-    
-    
-    
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,27 +24,30 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseProjectImage))
         projectImageView.addGestureRecognizer(gestureRecognizer)
         
-        
-        
     }
     // MARK: - Funtions
     @objc func chooseProjectImage() {
         
-        let actionSheet = UIAlertController(title: "Structure", message: "How would you like to select a picture?", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Structure", 
+                                            message: "How would you like to select a picture?", 
+                                            preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel",
+                                            style: .cancel,
+                                            handler: nil))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "Take Photo", 
+                                            style: .default,
+                                            handler: { [weak self] _ in
             self?.presentCamera()
             
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Chose Photo", style: .default, handler: { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "Chose Photo", 
+                                            style: .default,
+                                            handler: { [weak self] _ in
             self?.presentPhotoPicker()
         }))
-        
         present(actionSheet, animated: true)
-        
     }
     
     func presentCamera() {
@@ -76,8 +71,6 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -87,7 +80,6 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
         } else {
             let alert = UIAlertController.Alert(title: "Error", message: "Project Name/Type/Engineer?", preferredStyle: UIAlertController.Style.alert)
             present(alert, animated: true, completion: nil)
-            
         }
     }
     
@@ -103,6 +95,5 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
             }
         }
     }
-    
 }
 

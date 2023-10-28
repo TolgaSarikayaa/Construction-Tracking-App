@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class PlaceModel {
-    
     static let sharedinstance = PlaceModel()
     
     var structureName = ""
@@ -22,6 +21,4 @@ class PlaceModel {
     
     var placeLatitude = ""
     var placeLongitude = ""
-    
-    
 }

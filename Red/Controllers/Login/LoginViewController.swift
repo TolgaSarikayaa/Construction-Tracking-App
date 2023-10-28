@@ -19,17 +19,12 @@ class LoginViewController: UIViewController {
         return scrollView
     }()
     
-    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
         imageView.contentMode = .scaleAspectFit
         return imageView
-        
     }()
-    
-   
-    
     private let emailField: UITextField = {
         let field = UITextField()
         field.autocapitalizationType = .none
@@ -42,9 +37,7 @@ class LoginViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         return field
-        
     }()
-    
     private let passwordField: UITextField = {
         let field = UITextField()
         field.autocapitalizationType = .none
@@ -60,7 +53,6 @@ class LoginViewController: UIViewController {
         return field
         
     }()
-    
     private let loginButton: UIButton = {
        let button = UIButton()
         button.setTitle("Log In", for: .normal)
@@ -70,17 +62,12 @@ class LoginViewController: UIViewController {
         button.layer.masksToBounds = true
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         return button
-        
     }()
-   
-
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
         
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
@@ -94,8 +81,7 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
-        
-        
+    
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
         view.addGestureRecognizer(tap)
         view.endEditing(true)
@@ -111,17 +97,10 @@ class LoginViewController: UIViewController {
         emailField.frame = CGRect(x: 30,y: imageView.bottom+30, width: scrollView.width-60, height: 52)
         passwordField.frame = CGRect(x: 30,y: emailField.bottom+30, width: scrollView.width-60, height: 52)
         loginButton.frame = CGRect(x: 30,y: passwordField.bottom+30, width: scrollView.width-60, height: 52)
-        
-        
-        
-        
     }
     
     // MARK: - Functions
     @objc private func loginButtonTapped() {
-        
-        
-        
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
         
@@ -132,60 +111,45 @@ class LoginViewController: UIViewController {
             
             return
         }
-        
         performSegue(withIdentifier: "AddPlace", sender: nil)
-        
-        
         spinner.show(in: view)
-        
-       
         // Firebase Log In
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let strongSelf = self else {
                 return
             }
-            
             DispatchQueue.main.async {
                 strongSelf.spinner.dismiss()
-
             }
-            
         }
-        
     }
         
         func alertUserLoginError() {
-            let alert = UIAlertController(title: "Woops", message: "Please enter all information to login",
+            let alert = UIAlertController(title: "Woops", 
+                                          message: "Please enter all information to login",
                                           preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-            
+            alert.addAction(UIAlertAction(title: "Dismiss", 
+                                          style: .cancel,
+                                          handler: nil))
             present(alert, animated: true)
         }
-    
-    
-    
     @objc private func didTapRegister() {
         performSegue(withIdentifier: "toRegister", sender: nil)
-        
-      
     }
     
-
 }
 
+// MARK: - Extension
 extension LoginViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == emailField {
             passwordField.becomeFirstResponder()
         }
-        
         else if textField == passwordField {
             loginButtonTapped()
         }
-        
         return true
     }
 }

@@ -21,7 +21,6 @@ class RegisterViewController: UIViewController {
         return scrollView
     }()
     
-    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle")
@@ -31,7 +30,6 @@ class RegisterViewController: UIViewController {
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
-        
     }()
    
     private let companyNameField: UITextField = {
@@ -46,7 +44,6 @@ class RegisterViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         return field
-        
     }()
     
     private let firstNameField: UITextField = {
@@ -61,7 +58,6 @@ class RegisterViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         return field
-        
     }()
     
     private let lastNameField: UITextField = {
@@ -76,7 +72,6 @@ class RegisterViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         return field
-        
     }()
     
     private let emailField: UITextField = {
@@ -91,7 +86,6 @@ class RegisterViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         return field
-        
     }()
     
     private let passwordField: UITextField = {
@@ -107,7 +101,6 @@ class RegisterViewController: UIViewController {
         field.leftViewMode = .always
         field.isSecureTextEntry = true
         return field
-        
     }()
     
     private let registerButton: UIButton = {
@@ -126,10 +119,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Creat Account"
-       
-        
-       
-        
        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
         emailField.delegate = self
@@ -157,13 +146,6 @@ class RegisterViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
-    
-    @objc private func didTapChangeProfilePic() {
-        presentPhotoActionSheet()
-    }
-    
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame = view.bounds
@@ -178,10 +160,12 @@ class RegisterViewController: UIViewController {
         passwordField.frame = CGRect(x: 30,y: emailField.bottom+10, width: scrollView.width-60, height: 52)
         registerButton.frame = CGRect(x: 30,y: passwordField.bottom+10, width: scrollView.width-60, height: 52)
         
-        
     }
     
     // MARK: - Functions
+    @objc private func didTapChangeProfilePic() {
+        presentPhotoActionSheet()
+    }
     
     @objc private func registerButtonTapped() {
         
@@ -203,10 +187,7 @@ class RegisterViewController: UIViewController {
               alertUserLoginError()
             return
         }
-        
         spinner.show(in: view)
-        
-        
         
         // Firebase Login
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -214,50 +195,28 @@ class RegisterViewController: UIViewController {
                 print("Error creating user")
                 return
             }
-            
             let fireStore = Firestore.firestore()
-            
             let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!, "company" : self.companyNameField.text!] as [String : Any]
             fireStore.collection("UserInfo").addDocument(data: userDictionary) { (error) in
                 if error != nil {
-                    
                 }
-                
-                
             }
-          
             self.didTapRegister()
-            
         }
-        
-        
     }
-        
     func alertUserLoginError(message: String = "Please enter all information to create a new account") {
         let alert = UIAlertController(title: "Woops",
                                       message: message,
                                       preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-        
         present(alert, animated: true)
     }
-    
-    
-    
-    
-    
-    
     @objc private func didTapRegister() {
         performSegue(withIdentifier: "AddPlace2", sender: nil)
-      
-        
-        
     }
-    
-
 }
-
+// MARK: - Extension
 extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -265,11 +224,9 @@ extension RegisterViewController: UITextFieldDelegate {
         if textField == emailField {
             passwordField.becomeFirstResponder()
         }
-        
         else if textField == passwordField {
             registerButtonTapped()
         }
-        
         return true
     }
 }
@@ -278,22 +235,15 @@ extension RegisterViewController: UIImagePickerControllerDelegate , UINavigation
     
     func presentPhotoActionSheet() {
         let actionSheet = UIAlertController(title: "Profile Picture", message: "How would you like to select a picture?", preferredStyle: .actionSheet)
-        
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { [weak self] _ in
                                                             self?.presentCamera()
-            
         }))
-        
         actionSheet.addAction(UIAlertAction(title: "Chose Photo", style: .default, handler: { [weak self] _ in
-                                                             self?.presentPhotoPicker()
+                                                            self?.presentPhotoPicker()
         }))
-        
         present(actionSheet, animated: true)
     }
-    
-   
     func presentCamera() {
         let vc = UIImagePickerController()
         vc.sourceType = .camera
@@ -315,7 +265,6 @@ extension RegisterViewController: UIImagePickerControllerDelegate , UINavigation
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
              return
         }
-        
         self.imageView.image = selectedImage
     }
     

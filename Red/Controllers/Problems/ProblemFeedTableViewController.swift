@@ -14,14 +14,13 @@ import FirebaseAuth
 
 class ProblemFeedTableViewController: UITableViewController {
     
+    // MARK: - Properties
     var problemArray = [Problem]()
     var choosenProblem : Problem?
     var selectedProblem : Problem?
-    
-   
-    
     let fireStoreDatabase = Firestore.firestore()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,21 +60,14 @@ class ProblemFeedTableViewController: UITableViewController {
                                     
                                     let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake, documentId: documentId)
                                     self.problemArray.append(problem)
-                                    
                                 }
                             }
                         }
-                        
                     }
-                    
                     self.tableView.reloadData()
-                    
                 }
-                
             }
         }
-        
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,13 +78,11 @@ class ProblemFeedTableViewController: UITableViewController {
         cell.documentIdLabel.text = choosenProblem?.documentId
         
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        cell.cellBackground.layer.cornerRadius = 16.0
+        cell.cellBackground.layer.cornerRadius = 12.0
         
         return cell
     }
-    
-   
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath as IndexPath)  {
          
@@ -103,13 +93,8 @@ class ProblemFeedTableViewController: UITableViewController {
          cell.accessoryType = .checkmark
             // cell.backgroundColor = .systemGreen
         }
-   }
-         
-        //self.tableView.reloadData()   
-         
+      }
     }
-         
-    
         override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
             return .delete
         }
@@ -137,16 +122,10 @@ class ProblemFeedTableViewController: UITableViewController {
                         }
                     }
                 }
-                
             }
-            
-            
         }
-    
+    // MARK: - Actions
     @objc func addButton() {
         performSegue(withIdentifier: "toProblem", sender: nil)
     }
-        
-        
-    
 }
