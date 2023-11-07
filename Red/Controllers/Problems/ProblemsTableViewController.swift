@@ -77,22 +77,21 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                     // FireStore
                                     let fireStore = Firestore.firestore()
                                     
-                                    fireStore.collection("Problems").whereField("User", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot, error) in
+                                    fireStore.collection("Problems").whereField("User", isEqualTo: PlaceModel.sharedinstance.username!).getDocuments { (snapshot, error) in
                                         if error != nil {
-                                            let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                            _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                         }
                                     }
-                                    let firestoreProb = ["image": imageUrl!, "User": PlaceModel.sharedinstance.username, "mistake": self.mistakeText.text!, "date": FieldValue.serverTimestamp(), "person": self.personText.text!] as [String : Any]
+                                    let firestoreProb = ["image": imageUrl!, "User": PlaceModel.sharedinstance.username!, "mistake": self.mistakeText.text!, "date": FieldValue.serverTimestamp(), "person": self.personText.text!] as [String : Any]
                                     
                                     fireStore.collection("Problems").addDocument(data: firestoreProb) { (error) in
                                         if error != nil {
-                                            let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                            _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                         } else {
                                             DispatchQueue.main.async {
                                                 self.spinner.dismiss()
                                             }
-                                            // self.performSegue(withIdentifier: "toProblemFeed", sender: nil)
-                                            //self.tabBarController?.selectedIndex = 2
+                                           
                                             self.notification2()
                                             self.navigationController?.dismiss(animated: true)
                                         }
@@ -174,7 +173,9 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
         }
         
         func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-            UNUserNotificationCenter.current().setBadgeCount(0, withCompletionHandler: nil)
+            DispatchQueue.main.async {
+                UNUserNotificationCenter.current().setBadgeCount(0, withCompletionHandler: nil)
+            }
         }
     }
     

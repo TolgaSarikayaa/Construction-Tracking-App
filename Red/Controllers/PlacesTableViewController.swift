@@ -15,18 +15,21 @@ import FirebaseStorage
 class PlacesTableViewController: UITableViewController {
     
     // MARK: - UI Elements
+    var projects = [PlaceModel]()
     var userArray = [String]()
     var placeNameArray = [String]()
     var structureType = [String]()
     var placeIdArray = [String]()
     var userImageArray = [String]()
     var selectedPlaceId = [String]()
-    var engineer = [String]()
+    //var engineer = [String]()
     let fireStoreDatabase = Firestore.firestore()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         
@@ -38,15 +41,15 @@ class PlacesTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return engineer.count
+        return projects.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
-        cell.userLabel.text = "Enginner: \(engineer[indexPath.row])"
-        cell.structureNameLabel.text = placeNameArray[indexPath.row]
-        cell.structureTypeLabel.text = structureType[indexPath.row]
-        cell.userImageView.sd_setImage(with: URL(string: self.userImageArray[indexPath.row]))
+        cell.userLabel.text = "Enginner: \(projects[indexPath.row].engineer!)"
+        cell.structureNameLabel.text = "Project \(projects[indexPath.row].structureName!)"
+        cell.structureTypeLabel.text =  "\(projects[indexPath.row].structureType!)"
+        cell.userImageView.sd_setImage(with: URL(string: self.projects[indexPath.row].imageUrl!))
         cell.documentIdLabel.text = selectedPlaceId[indexPath.row]
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
         cell.cellBackground.layer.cornerRadius = 12.0
@@ -57,35 +60,38 @@ class PlacesTableViewController: UITableViewController {
     func getDataFromFirestore() {
         fireStoreDatabase.collection("Post").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
             } else {
-                if let snapshot = snapshot {
-                    
-                    self.userImageArray.removeAll()
-                    self.engineer.removeAll()
-                    self.placeNameArray.removeAll()
-                    self.selectedPlaceId.removeAll()
-                    self.structureType.removeAll()
-            
-                    for document in snapshot.documents {
-                        let documentID = document.documentID
-                        self.selectedPlaceId.append(documentID)
-                
-                        if let postedBy = document.get("Engineer") as? String {
-                            self.engineer.append(postedBy)
+                if snapshot?.isEmpty != true {
+                    self.projects.removeAll(keepingCapacity: false)
+                    if let documents = snapshot?.documents {
+                        for document in documents {
+                            let data = document.data()
+                            
+                            
+                            
+                                let documentID = document.documentID
+                                self.selectedPlaceId.append(documentID)
+                                
+                                if let postedBy = data["Engineer"] as? String {
+                                    
+                                if let postComment = data["structurName"] as? String {
+                        
+                                if let imageUrl = data["imageUrl"] as? String {
+                                
+                                    if let postStructureType = data["structureType"] as? String {
+                                        
+                                        let project = PlaceModel(structureName: postComment, structureType: postStructureType, engineer: postedBy, imageUrl: imageUrl)
+                                        self.projects.append(project)
+                                        
+                                          }
+                                       }
+                                    }
+                                }
+                            }
                         }
-                        if let postComment = document.get("structurName") as? String {
-                            self.placeNameArray.append(postComment)
-                        }
-                        if let imageUrl = document.get("imageUrl") as? String {
-                            self.userImageArray.append(imageUrl)
-                        }
-                        if let postStructureType = document.get("structureType") as? String {
-                            self.structureType.append(postStructureType)
-                        }
-                    }
-                     self.tableView.reloadData()
                 }
+                self.tableView.reloadData()
             }
         }
     }
@@ -122,12 +128,12 @@ class PlacesTableViewController: UITableViewController {
             
             if let project = sender as? PlaceModel {
             let destinationVC = segue.destination as! DetailTableViewController
-                destinationVC.choosenName = project.structureName
-                destinationVC.choosenType = project.structureType
-                destinationVC.choosenEnginer = project.engineer
-                destinationVC.choosenBudget = project.budget
-                destinationVC.choosenLatitude = Double(project.placeLatitude)!
-                destinationVC.choosenLongitude = Double(project.placeLongitude)!
+                destinationVC.choosenName = project.structureName!
+                destinationVC.choosenType = project.structureType!
+                destinationVC.choosenEnginer = project.engineer!
+                destinationVC.choosenBudget = project.budget!
+                destinationVC.choosenLatitude = Double(project.placeLatitude!)!
+                destinationVC.choosenLongitude = Double(project.placeLongitude!)!
             }
         }
     }
@@ -150,7 +156,7 @@ class PlacesTableViewController: UITableViewController {
                 } else {
                     print("Data deleted successfully.")
                     if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                        self.engineer.remove(at: selectedIndexPath.row)
+                        self.projects.remove(at: selectedIndexPath.row)
                         tableView.deleteRows(at: [indexPath], with: .fade)
                         tableView.reloadData()
                     }

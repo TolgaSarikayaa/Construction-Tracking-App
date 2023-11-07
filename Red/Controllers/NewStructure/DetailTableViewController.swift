@@ -60,7 +60,7 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                         let data = document.data()
                         let projectId = document.documentID
                         
-                        if let imageUrl = document.get("imageUrl") as? String {
+                        if let imageUrl = data["imageUrl"] as? String {
                             self.choosenImage = imageUrl
                             self.projectImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
                         }

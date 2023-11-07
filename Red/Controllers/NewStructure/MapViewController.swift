@@ -102,14 +102,14 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
                                 let firestoreDatabase = Firestore.firestore()
                                 var firestoreReference : DocumentReference? = nil
                                 
-                                firestoreDatabase.collection("Post").whereField("user", isEqualTo: PlaceModel.sharedinstance.username).getDocuments { (snapshot,error ) in
+                                firestoreDatabase.collection("Post").whereField("user", isEqualTo: PlaceModel.sharedinstance.username!).getDocuments { (snapshot,error ) in
                                     if error != nil {
                                         _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
                                      
                                     }
                                 }
                                 
-                                let firestorePost = ["imageUrl" : imageUrl!, "user" : PlaceModel.sharedinstance.username , "structurName" : PlaceModel.sharedinstance.structureName, "structureType" : PlaceModel.sharedinstance.structureType, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude, "Engineer": PlaceModel.sharedinstance.engineer, "Budget": PlaceModel.sharedinstance.budget] as [String : Any]
+                                let firestorePost = ["imageUrl" : imageUrl!, "user" : PlaceModel.sharedinstance.username! , "structurName" : PlaceModel.sharedinstance.structureName!, "structureType" : PlaceModel.sharedinstance.structureType!, "date" : FieldValue.serverTimestamp(), "placelatitude" : PlaceModel.sharedinstance.placeLatitude!, "placeLongitude" : PlaceModel.sharedinstance.placeLongitude!, "Engineer": PlaceModel.sharedinstance.engineer!, "Budget": PlaceModel.sharedinstance.budget!] as [String : Any]
                                 
                                 firestoreReference = firestoreDatabase.collection("Post").addDocument(data: firestorePost, completion: { (error) in
                                     if error != nil {
@@ -161,7 +161,12 @@ extension MapViewController : UNUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        UNUserNotificationCenter.current().setBadgeCount(0, withCompletionHandler: nil)
+        
+        DispatchQueue.main.async {
+            UNUserNotificationCenter.current().setBadgeCount(0, withCompletionHandler: { (error) in
+        })
     }
-    
+                                                             
+   }
 }
+    
