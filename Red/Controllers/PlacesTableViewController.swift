@@ -123,23 +123,31 @@ class PlacesTableViewController: UITableViewController {
         }
     }
     
+   
+        
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let project1 = projects[indexPath.row]
+        performSegue(withIdentifier: "toDetailsVC", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC" {
             
-            if let project = sender as? PlaceModel {
+            if let project2 = sender as? PlaceModel {
             let destinationVC = segue.destination as! DetailTableViewController
+                destinationVC.projectDetail = project2
+                destinationVC.choosenLatitude = Double(project2.placeLatitude!)!
+                destinationVC.choosenLongitude = Double(project2.placeLongitude!)!
+                /*
                 destinationVC.choosenName = project.structureName!
                 destinationVC.choosenType = project.structureType!
                 destinationVC.choosenEnginer = project.engineer!
                 destinationVC.choosenBudget = project.budget!
                 destinationVC.choosenLatitude = Double(project.placeLatitude!)!
                 destinationVC.choosenLongitude = Double(project.placeLongitude!)!
+                 */
             }
         }
-    }
-        
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "toDetailsVC", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

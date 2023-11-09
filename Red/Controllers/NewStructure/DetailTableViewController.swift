@@ -30,6 +30,8 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
     var choosenType : String = ""
     var choosenEnginer : String = ""
     var choosenBudget : String = ""
+    
+    var projectDetail:PlaceModel?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -37,8 +39,12 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
         
         projectLocation.delegate = self
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backButton))
+        
+      
     
-        getDataFromPost()
+       getDataFromPost()
+        
+        
     }
 
     // MARK: - Functions
@@ -61,33 +67,39 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
                         let projectId = document.documentID
                         
                         if let imageUrl = data["imageUrl"] as? String {
-                            self.choosenImage = imageUrl
+                            self.projectDetail?.imageUrl = imageUrl
                             self.projectImageView.sd_setImage(with: URL(string: imageUrl), completed: nil)
                         }
                         
                         if let postName = data["structurName"] as? String {
-                            self.choosenName = postName
+                            self.projectDetail?.structureName = postName
+                            //self.choosenName = postName
                             self.projectNameLabel.text = postName
                         }
                         
                         if let postStructureType = data["structureType"] as? String {
-                            self.choosenType = postStructureType
+                            self.projectDetail?.structureType = postStructureType
+                            //self.choosenType = postStructureType
                             self.projectTypeLabel.text = postStructureType
                         }
                         
                         if let postEnginnerName = data["Engineer"] as? String {
-                            self.choosenEnginer = postEnginnerName
+                            self.projectDetail?.engineer = postEnginnerName
+                            //self.choosenEnginer = postEnginnerName
                             self.engineerLabel.text = postEnginnerName
                         }
                 
                         if let postBudget = data["Budget"] as? String {
-                            self.budgetLabel.text = postBudget
+                            self.projectDetail?.budget = postBudget
+                            //self.budgetLabel.text = postBudget
                         }
                         
                         if let postLatitude = data["placelatitude"] as? String, let placelatitude = Double(postLatitude),
                                                   let postLongitude = data["placeLongitude"] as? String, let placeLongitude = Double(postLongitude) {
-                                                   self.choosenLatitude = placelatitude
-                                                   self.choosenLongitude = placeLongitude
+                            self.projectDetail?.placeLatitude = String(placelatitude)
+                            self.projectDetail?.placeLongitude = String(placeLongitude)
+                                                   //self.choosenLatitude = placelatitude
+                                                   //self.choosenLongitude = placeLongitude
 
                                                    let location = CLLocationCoordinate2D(latitude: self.choosenLatitude, longitude: self.choosenLongitude)
                                                    let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)

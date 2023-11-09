@@ -20,7 +20,6 @@
 		145E69842A40B877008FB01C /* RedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69832A40B877008FB01C /* RedUITests.swift */; };
 		145E69862A40B877008FB01C /* RedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69852A40B877008FB01C /* RedUITestsLaunchTests.swift */; };
 		145E699A2A40B9A7008FB01C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69992A40B9A7008FB01C /* Extensions.swift */; };
-		145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E699B2A40B9B4008FB01C /* DatabaseManager.swift */; };
 		145E699E2A40B9C9008FB01C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E699D2A40B9C9008FB01C /* LoginViewController.swift */; };
 		145E699F2A40B9C9008FB01C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E699D2A40B9C9008FB01C /* LoginViewController.swift */; };
 		145E69A02A40B9C9008FB01C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E699D2A40B9C9008FB01C /* LoginViewController.swift */; };
@@ -84,7 +83,6 @@
 		145E69832A40B877008FB01C /* RedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedUITests.swift; sourceTree = "<group>"; };
 		145E69852A40B877008FB01C /* RedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		145E69992A40B9A7008FB01C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		145E699B2A40B9B4008FB01C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		145E699D2A40B9C9008FB01C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		145E69A12A40B9D3008FB01C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 			children = (
 				145E695F2A40B876008FB01C /* AppDelegate.swift */,
 				145E69612A40B876008FB01C /* SceneDelegate.swift */,
-				145E699B2A40B9B4008FB01C /* DatabaseManager.swift */,
 				14658C262A9DEC28000B443B /* StorageManager.swift */,
 			);
 			path = Resources;
@@ -559,7 +556,6 @@
 				145E699A2A40B9A7008FB01C /* Extensions.swift in Sources */,
 				14645F362AAA102100CD55A5 /* ProblemsTableViewController.swift in Sources */,
 				145E69A22A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
-				145E699C2A40B9B4008FB01C /* DatabaseManager.swift in Sources */,
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
 				14B56CE62AAC799000D7EB85 /* ProblemFeedTableViewController.swift in Sources */,

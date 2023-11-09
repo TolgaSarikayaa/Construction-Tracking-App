@@ -75,6 +75,7 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
     }
+   
     @objc func saveButton() {
         if PlaceModel.sharedinstance.placeLatitude == "" && PlaceModel.sharedinstance.placeLongitude == "" {
             let alert = UIAlertController.Alert(title: "Error", message: "Please select your coordinate", preferredStyle: .alert)
