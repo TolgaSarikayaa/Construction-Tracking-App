@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14123BEE2AFE3B0E00C07F23 /* ProblemDaoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */; };
+		14123BF12AFE3BBD00C07F23 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14123BF02AFE3BBD00C07F23 /* RxSwift */; };
+		14123BF32AFE3F6200C07F23 /* ProblemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14123BF22AFE3F6200C07F23 /* ProblemViewModel.swift */; };
 		141D8D042AA376820071348B /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D8D032AA376820071348B /* LaunchScreen.swift */; };
 		141D8D0C2AA91A720071348B /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D8D0B2AA91A720071348B /* DetailTableViewController.swift */; };
 		143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */; };
@@ -66,6 +69,8 @@
 
 /* Begin PBXFileReference section */
 		0F4EF520AB08AEA152D3547E /* Pods-RedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedTests.debug.xcconfig"; path = "Target Support Files/Pods-RedTests/Pods-RedTests.debug.xcconfig"; sourceTree = "<group>"; };
+		14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDaoRepository.swift; sourceTree = "<group>"; };
+		14123BF22AFE3F6200C07F23 /* ProblemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemViewModel.swift; sourceTree = "<group>"; };
 		141D8D032AA376820071348B /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		141D8D0B2AA91A720071348B /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14123BF12AFE3BBD00C07F23 /* RxSwift in Frameworks */,
 				3FD6C94F62B40EFB46A755E5 /* Pods_Red.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +149,22 @@
 				85E4E5E649847E36E6DABA6D /* Pods_RedTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14123BEB2AFE3AD000C07F23 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				14123BEC2AFE3AE800C07F23 /* repo */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		14123BEC2AFE3AE800C07F23 /* repo */ = {
+			isa = PBXGroup;
+			children = (
+				14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */,
+			);
+			path = repo;
 			sourceTree = "<group>";
 		};
 		145E69532A40B876008FB01C = {
@@ -274,6 +296,8 @@
 				14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */,
 				14B56CE52AAC799000D7EB85 /* ProblemFeedTableViewController.swift */,
 				14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */,
+				14123BF22AFE3F6200C07F23 /* ProblemViewModel.swift */,
+				14123BEB2AFE3AD000C07F23 /* data */,
 			);
 			path = Problems;
 			sourceTree = "<group>";
@@ -327,6 +351,9 @@
 			dependencies = (
 			);
 			name = Red;
+			packageProductDependencies = (
+				14123BF02AFE3BBD00C07F23 /* RxSwift */,
+			);
 			productName = Red;
 			productReference = 145E695C2A40B876008FB01C /* Red.app */;
 			productType = "com.apple.product-type.application";
@@ -402,6 +429,9 @@
 				Base,
 			);
 			mainGroup = 145E69532A40B876008FB01C;
+			packageReferences = (
+				14123BEF2AFE3B9200C07F23 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 145E695D2A40B876008FB01C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -556,6 +586,7 @@
 				145E699A2A40B9A7008FB01C /* Extensions.swift in Sources */,
 				14645F362AAA102100CD55A5 /* ProblemsTableViewController.swift in Sources */,
 				145E69A22A40B9D3008FB01C /* RegisterViewController.swift in Sources */,
+				14123BEE2AFE3B0E00C07F23 /* ProblemDaoRepository.swift in Sources */,
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
 				14B56CE62AAC799000D7EB85 /* ProblemFeedTableViewController.swift in Sources */,
@@ -568,6 +599,7 @@
 				1498E2A42AA2015D002A7EBB /* MapViewController.swift in Sources */,
 				1498E2A02AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */,
 				145E696A2A40B876008FB01C /* Red.xcdatamodeld in Sources */,
+				14123BF32AFE3F6200C07F23 /* ProblemViewModel.swift in Sources */,
 				14A23F0A2A5EC68500A9EB6A /* PlacesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -930,6 +962,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		14123BEF2AFE3B9200C07F23 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14123BF02AFE3BBD00C07F23 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14123BEF2AFE3B9200C07F23 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		145E69682A40B876008FB01C /* Red.xcdatamodeld */ = {

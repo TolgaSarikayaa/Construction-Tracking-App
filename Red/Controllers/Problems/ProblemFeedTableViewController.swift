@@ -15,10 +15,14 @@ import FirebaseAuth
 class ProblemFeedTableViewController: UITableViewController {
     
     // MARK: - Properties
-    var problemArray = [Problem]()
-    var choosenProblem : Problem?
-    var selectedProblem : Problem?
+    //var problemArray = [Problem]()
+    //var choosenProblem : Problem?
+    //var selectedProblem : Problem?
     let fireStoreDatabase = Firestore.firestore()
+    
+    var problemList = [Problem]()
+    
+    var viewModel  = ProblemViewModel()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -34,16 +38,29 @@ class ProblemFeedTableViewController: UITableViewController {
         
         tableView.separatorColor = UIColor(white: 0.95, alpha: 1)
         
-        getProblemsFromFirebase()
+        
+        _ = viewModel.problemsList.subscribe(onNext: { list in
+            self.problemList = list
+            DispatchQueue.main.async {
+                
+                self.tableView.reloadData()
+                //self.problemList.removeAll(keepingCapacity: false)
+            }
+            
+        })
+        
+        
+        //getProblemsFromFirebase()
         
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return problemArray.count
+        return problemList.count
     }
     
+    /*
     func getProblemsFromFirebase() {
         fireStoreDatabase.collection("Problems").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
             if error != nil {
@@ -71,13 +88,16 @@ class ProblemFeedTableViewController: UITableViewController {
             }
         }
     }
+     */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let problem = problemList[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProblemCell
-        cell.projectPersonLabel.text = "Engineer: \(problemArray[indexPath.row].projectEngineer!)"
-        cell.problemLabel.text = "Problem: \(problemArray[indexPath.row].problemExplain!)"
-        cell.problemImageView.sd_setImage(with: URL(string: problemArray[indexPath.row].problemImage!))
-        cell.documentIdLabel.text = choosenProblem?.documentId
+        cell.projectPersonLabel.text = "Engineer: \(problem.projectEngineer!)"
+        cell.problemLabel.text = "Problem: \(problem.problemExplain!)"
+        cell.problemImageView.sd_setImage(with: URL(string: problem.problemImage!))
+        cell.documentIdLabel.text = problem.documentId
         
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
         cell.cellBackground.layer.cornerRadius = 12.0
@@ -101,10 +121,11 @@ class ProblemFeedTableViewController: UITableViewController {
             return .delete
         }
         
+    
         override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
                 
-                let documentIdToDelete = problemArray[indexPath.row].documentId
+                let documentIdToDelete = problemList[indexPath.row].documentId
                 
                 fireStoreDatabase.collection("Problems").document(documentIdToDelete!).delete { error in
                     if let error = error {
@@ -114,8 +135,8 @@ class ProblemFeedTableViewController: UITableViewController {
                         
                         if let selectedIndexPath = tableView.indexPathForSelectedRow {
                             
-                            if selectedIndexPath.row < self.problemArray.count {
-                                self.problemArray.remove(at: selectedIndexPath.row)
+                            if selectedIndexPath.row < self.problemList.count {
+                                self.problemList.remove(at: selectedIndexPath.row)
                                 tableView.deleteRows(at: [indexPath], with: .fade)
                                 tableView.reloadData()
                             } else {
@@ -126,6 +147,7 @@ class ProblemFeedTableViewController: UITableViewController {
                 }
             }
         }
+     
     // MARK: - Actions
     @objc func addButton() {
         performSegue(withIdentifier: "toProblem", sender: nil)
