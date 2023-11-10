@@ -31,7 +31,7 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
     var choosenEnginer : String = ""
     var choosenBudget : String = ""
     
-    var projectDetail:PlaceModel?
+    var projectDetail: PlaceModel?
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -40,9 +40,19 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
         projectLocation.delegate = self
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backButton))
         
+        if let p = projectDetail {
+            projectNameLabel.text = p.structureName
+            projectTypeLabel.text = p.structureType
+            engineerLabel.text = p.engineer
+            budgetLabel.text = p.budget
+            projectImageView.sd_setImage(with: URL(string: p.imageUrl!), completed: nil)
+            
+            
+        }
+        
       
     
-       getDataFromPost()
+       //getDataFromPost()
         
         
     }

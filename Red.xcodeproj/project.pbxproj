@@ -10,6 +10,8 @@
 		14123BEE2AFE3B0E00C07F23 /* ProblemDaoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */; };
 		14123BF12AFE3BBD00C07F23 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 14123BF02AFE3BBD00C07F23 /* RxSwift */; };
 		14123BF32AFE3F6200C07F23 /* ProblemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14123BF22AFE3F6200C07F23 /* ProblemViewModel.swift */; };
+		14123BF52AFE513200C07F23 /* ProjectsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14123BF42AFE513200C07F23 /* ProjectsRepository.swift */; };
+		14123BF72AFE558800C07F23 /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14123BF62AFE558800C07F23 /* PlacesViewModel.swift */; };
 		141D8D042AA376820071348B /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D8D032AA376820071348B /* LaunchScreen.swift */; };
 		141D8D0C2AA91A720071348B /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D8D0B2AA91A720071348B /* DetailTableViewController.swift */; };
 		143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */; };
@@ -71,6 +73,8 @@
 		0F4EF520AB08AEA152D3547E /* Pods-RedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedTests.debug.xcconfig"; path = "Target Support Files/Pods-RedTests/Pods-RedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemDaoRepository.swift; sourceTree = "<group>"; };
 		14123BF22AFE3F6200C07F23 /* ProblemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemViewModel.swift; sourceTree = "<group>"; };
+		14123BF42AFE513200C07F23 /* ProjectsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsRepository.swift; sourceTree = "<group>"; };
+		14123BF62AFE558800C07F23 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
 		141D8D032AA376820071348B /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		141D8D0B2AA91A720071348B /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */,
+				14123BF42AFE513200C07F23 /* ProjectsRepository.swift */,
 			);
 			path = repo;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */,
+				14123BF62AFE558800C07F23 /* PlacesViewModel.swift */,
 				14BCBE112A9161E200BDAD9B /* FeedCell.swift */,
 				143FB9C92A8D09B900D432D8 /* ProfilViewController.swift */,
 				14B56CEE2AAFB44500D7EB85 /* NewStructure */,
@@ -581,6 +587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14658C272A9DEC28000B443B /* StorageManager.swift in Sources */,
+				14123BF52AFE513200C07F23 /* ProjectsRepository.swift in Sources */,
 				145E699E2A40B9C9008FB01C /* LoginViewController.swift in Sources */,
 				143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */,
 				145E699A2A40B9A7008FB01C /* Extensions.swift in Sources */,
@@ -590,6 +597,7 @@
 				14BCBE122A9161E200BDAD9B /* FeedCell.swift in Sources */,
 				145E69602A40B876008FB01C /* AppDelegate.swift in Sources */,
 				14B56CE62AAC799000D7EB85 /* ProblemFeedTableViewController.swift in Sources */,
+				14123BF72AFE558800C07F23 /* PlacesViewModel.swift in Sources */,
 				141D8D042AA376820071348B /* LaunchScreen.swift in Sources */,
 				14B56CEA2AAC7DEF00D7EB85 /* ProblemCell.swift in Sources */,
 				145E69622A40B876008FB01C /* SceneDelegate.swift in Sources */,

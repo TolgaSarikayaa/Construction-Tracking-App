@@ -7,11 +7,13 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 import RxSwift
 
 class ProblemDaoRepository {
     var problemList = BehaviorSubject<[Problem]>(value: [Problem]())
     var collectionProblems = Firestore.firestore()
+    
     
     
     func getProblems() {
@@ -23,7 +25,7 @@ class ProblemDaoRepository {
             } else {
                 if snapshot?.isEmpty != true {
                     list.removeAll(keepingCapacity: false)
-                   
+                    
                     if let documents = snapshot?.documents {
                         for document in documents {
                             let data = document.data()
@@ -36,17 +38,15 @@ class ProblemDaoRepository {
                             let problem = Problem(projectEngineer: person, problemImage: imageUrl, problemExplain: mistake, documentId: id)
                             list.append(problem)
                         }
-                        
                     }
-                    
                     self.problemList.onNext(list)
                 }
             }
-            
-           
-            
         }
     }
     
+    func addProblem() {
+      
+    }
     
 }

@@ -10,18 +10,13 @@ import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
-import FirebaseAuth
+
 
 class ProblemFeedTableViewController: UITableViewController {
     
     // MARK: - Properties
-    //var problemArray = [Problem]()
-    //var choosenProblem : Problem?
-    //var selectedProblem : Problem?
     let fireStoreDatabase = Firestore.firestore()
-    
     var problemList = [Problem]()
-    
     var viewModel  = ProblemViewModel()
     
     // MARK: - Life Cycle
@@ -44,51 +39,15 @@ class ProblemFeedTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 
                 self.tableView.reloadData()
-                //self.problemList.removeAll(keepingCapacity: false)
             }
-            
         })
-        
-        
-        //getProblemsFromFirebase()
         
     }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return problemList.count
     }
-    
-    /*
-    func getProblemsFromFirebase() {
-        fireStoreDatabase.collection("Problems").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
-            if error != nil {
-                _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
-            } else {
-                if snapshot?.isEmpty != true {
-                    self.problemArray.removeAll(keepingCapacity: false)
-                    if let documents = snapshot?.documents {
-                        for document in documents {
-                           
-                            let data = document.data()
-                            if let problemPerson = data["person"] as? String {
-                                if let imageUrlArray = data["image"]  as? String {
-                                    if let mistake = data["mistake"] as? String {
-                                        
-                                        let problem = Problem(projectEngineer: problemPerson, problemImage: imageUrlArray, problemExplain: mistake, documentId: document.documentID)
-                                        self.problemArray.append(problem)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
-     */
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let problem = problemList[indexPath.row]
@@ -98,10 +57,8 @@ class ProblemFeedTableViewController: UITableViewController {
         cell.problemLabel.text = "Problem: \(problem.problemExplain!)"
         cell.problemImageView.sd_setImage(with: URL(string: problem.problemImage!))
         cell.documentIdLabel.text = problem.documentId
-        
         cell.backgroundColor = UIColor(white: 0.95, alpha: 1)
         cell.cellBackground.layer.cornerRadius = 12.0
-        
         return cell
     }
 
@@ -110,10 +67,8 @@ class ProblemFeedTableViewController: UITableViewController {
          
          if cell.accessoryType == .checkmark {
          cell.accessoryType = .none
-         //cell.backgroundColor = .systemBackground
          } else {
          cell.accessoryType = .checkmark
-            // cell.backgroundColor = .systemGreen
         }
       }
     }
