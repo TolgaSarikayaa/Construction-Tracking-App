@@ -31,12 +31,13 @@ class ProjectsRepository {
                             let data = document.data()
                             
                             let id = document.documentID
-                            let enginner = data["Enginner"] as? String ?? ""
+                            let engineer = data["Engineer"] as? String ?? ""
                             let projectName = data["structurName"] as? String ?? ""
                             let imageUrl = data["imageUrl"] as? String ?? ""
                             let structureType = data["structureType"] as? String ?? ""
+                            let budget = data["Budget"] as? String ?? ""
                             
-                            let project = PlaceModel(structureName: projectName, structureType: structureType, engineer: enginner, imageUrl: imageUrl, documentId: id)
+                            let project = PlaceModel(structureName: projectName, structureType: structureType, engineer: engineer, budget: budget, imageUrl: imageUrl, documentId: id, placeLatitude: "", placeLongitude: "")
                             list.append(project)
                         }
                     }

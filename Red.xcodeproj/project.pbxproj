@@ -301,8 +301,8 @@
 			children = (
 				14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */,
 				14B56CE52AAC799000D7EB85 /* ProblemFeedTableViewController.swift */,
-				14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */,
 				14123BF22AFE3F6200C07F23 /* ProblemViewModel.swift */,
+				14B56CE92AAC7DEF00D7EB85 /* ProblemCell.swift */,
 				14123BEB2AFE3AD000C07F23 /* data */,
 			);
 			path = Problems;
