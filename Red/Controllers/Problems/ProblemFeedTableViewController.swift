@@ -72,34 +72,18 @@ class ProblemFeedTableViewController: UITableViewController {
         }
       }
     }
-        override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
             return .delete
         }
         
     
         override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            let problem = problemList[indexPath.row]
+            
             if editingStyle == .delete {
-                
-                let documentIdToDelete = problemList[indexPath.row].documentId
-                
-                fireStoreDatabase.collection("Problems").document(documentIdToDelete!).delete { error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        print("data deleted successfuly")
-                        
-                        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                            
-                            if selectedIndexPath.row < self.problemList.count {
-                                self.problemList.remove(at: selectedIndexPath.row)
-                                tableView.deleteRows(at: [indexPath], with: .fade)
-                                tableView.reloadData()
-                            } else {
-                                print("invalid index")
-                            }
-                        }
-                    }
-                }
+                viewModel.deleteProject(documentID: problem.documentId!)
+              
             }
         }
      

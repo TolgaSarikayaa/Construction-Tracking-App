@@ -22,5 +22,8 @@ class ProblemViewModel {
         problemRepo.getProblems()
     }
     
+    func deleteProject(documentID: String) {
+        problemRepo.deleteProject(documentID: documentID)
+    }
     
 }

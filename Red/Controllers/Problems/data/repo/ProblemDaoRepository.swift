@@ -45,8 +45,21 @@ class ProblemDaoRepository {
         }
     }
     
-    func addProblem() {
-      
+    func deleteProject(documentID: String) {
+        collectionProblems.collection("Problems").document(documentID).delete { [weak self] error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if var problem = try? self?.problemList.value() {
+                    problem.removeAll { $0.documentId == documentID }
+                    self?.problemList.onNext(problem)
+                    print("Data deleted successfully.")
+                }
+                
+                
+            }
+        }
+        
     }
     
 }
