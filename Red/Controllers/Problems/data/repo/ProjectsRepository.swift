@@ -36,8 +36,12 @@ class ProjectsRepository {
                             let imageUrl = data["imageUrl"] as? String ?? ""
                             let structureType = data["structureType"] as? String ?? ""
                             let budget = data["Budget"] as? String ?? ""
+                            let Latitude = data["placelatitude"] as? String ?? ""
+                            let Longitude = data["placeLongitude"] as? String ?? ""
+                            //let projectLatitude = Double(Latitude)
+                            //let projectLongitude = Double(Longitude)
                             
-                            let project = PlaceModel(structureName: projectName, structureType: structureType, engineer: engineer, budget: budget, imageUrl: imageUrl, documentId: id, placeLatitude: "", placeLongitude: "")
+                            let project = PlaceModel(structureName: projectName, structureType: structureType, engineer: engineer, budget: budget, imageUrl: imageUrl, documentId: id, placeLatitude: Latitude, placeLongitude: Longitude)
                             list.append(project)
                         }
                     }
