@@ -79,21 +79,10 @@ class PlacesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let project = projects[indexPath.row]
+        
         if editingStyle == .delete {
-            let documentIDToDelete = projects[indexPath.row].documentId!
-            
-            fireStoreDatabase.collection("Post").document(documentIDToDelete).delete { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print("Data deleted successfully.")
-                    if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                        self.projects.remove(at: selectedIndexPath.row)
-                        tableView.deleteRows(at: [indexPath], with: .fade)
-                        tableView.reloadData()
-                    }
-                }
-            }
+            viewModel.deleteProject(documentID: project.documentId!)
         }
     }
 }

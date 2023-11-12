@@ -166,8 +166,8 @@
 		14123BEC2AFE3AE800C07F23 /* repo */ = {
 			isa = PBXGroup;
 			children = (
-				14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */,
 				14123BF42AFE513200C07F23 /* ProjectsRepository.swift */,
+				14123BED2AFE3B0E00C07F23 /* ProblemDaoRepository.swift */,
 			);
 			path = repo;
 			sourceTree = "<group>";

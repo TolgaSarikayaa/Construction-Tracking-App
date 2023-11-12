@@ -38,9 +38,7 @@ class ProjectsRepository {
                             let budget = data["Budget"] as? String ?? ""
                             let Latitude = data["placelatitude"] as? String ?? ""
                             let Longitude = data["placeLongitude"] as? String ?? ""
-                            //let projectLatitude = Double(Latitude)
-                            //let projectLongitude = Double(Longitude)
-                            
+            
                             let project = PlaceModel(structureName: projectName, structureType: structureType, engineer: engineer, budget: budget, imageUrl: imageUrl, documentId: id, placeLatitude: Latitude, placeLongitude: Longitude)
                             list.append(project)
                         }
@@ -77,6 +75,21 @@ class ProjectsRepository {
             }
         } else {
             print("No authenticated user")
+        }
+    }
+    
+    func deleteProject(documentID: String) {
+        collectionProjects.collection("Post").document(documentID).delete {  [weak self] error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Data deleted successfully.")
+                
+                if var projects = try? self?.projectList.value() {
+                    projects.removeAll { $0.documentId == documentID }
+                    self?.projectList.onNext(projects)
+                }
+            }
         }
     }
     

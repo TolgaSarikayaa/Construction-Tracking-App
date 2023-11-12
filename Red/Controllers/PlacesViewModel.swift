@@ -16,6 +16,7 @@ class PlacesViewModel {
     init() {
         projectsList = projectRepo.projectList
         getProjects()
+        
     }
     
     
@@ -24,5 +25,7 @@ class PlacesViewModel {
         projectRepo.getUserInfo()
     }
     
-    
+    func deleteProject(documentID: String) {
+        projectRepo.deleteProject(documentID: documentID)
+    }
 }
