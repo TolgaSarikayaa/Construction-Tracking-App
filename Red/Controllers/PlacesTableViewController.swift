@@ -26,6 +26,10 @@ class PlacesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarTitleColor(.black)
+        
+        setLightMode()
+        
         _ = viewModel.projectsList.subscribe(onNext: { list in
             self.projects = list
             DispatchQueue.main.async {

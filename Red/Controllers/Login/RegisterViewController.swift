@@ -118,6 +118,9 @@ class RegisterViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setLightMode()
+        
         title = "Creat Account"
        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         

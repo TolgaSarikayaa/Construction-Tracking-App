@@ -27,6 +27,10 @@ class MapViewController: UIViewController,MKMapViewDelegate, CLLocationManagerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarTitleColor(.black)
+       
+        setLightMode()
+        
         UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { granted, error in
             self.permissionCheck = granted

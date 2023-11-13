@@ -20,6 +20,10 @@ class NewProjectVC: UITableViewController, UIImagePickerControllerDelegate, UINa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarTitleColor(.black)
+        
+        setLightMode()
+        
         projectImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseProjectImage))
         projectImageView.addGestureRecognizer(gestureRecognizer)

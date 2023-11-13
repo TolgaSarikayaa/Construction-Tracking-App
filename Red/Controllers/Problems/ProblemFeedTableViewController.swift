@@ -23,6 +23,8 @@ class ProblemFeedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setLightMode()
+        
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = UIColor.systemRed
             navigationController?.navigationBar.standardAppearance = appearance

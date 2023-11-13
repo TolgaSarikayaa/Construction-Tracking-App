@@ -27,6 +27,10 @@ class DetailTableViewController: UITableViewController,MKMapViewDelegate,CLLocat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarTitleColor(.black)
+       
+        setLightMode()
+        
         projectLocation.delegate = self
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(backButton))
         

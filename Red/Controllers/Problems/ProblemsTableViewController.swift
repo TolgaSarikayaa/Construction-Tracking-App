@@ -27,6 +27,10 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarTitleColor(.black)
+       
+        setLightMode()
+        
             mistakeImageView.isUserInteractionEnabled = true
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(chooseProjectImage))
             mistakeImageView.addGestureRecognizer(gestureRecognizer)

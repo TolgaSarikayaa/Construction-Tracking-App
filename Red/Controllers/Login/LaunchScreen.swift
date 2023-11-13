@@ -16,6 +16,8 @@ class LaunchScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setLightMode()
 
         startButton.layer.cornerRadius = 15
         startButton.layer.masksToBounds = true
