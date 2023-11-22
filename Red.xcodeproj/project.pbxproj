@@ -33,7 +33,6 @@
 		145E69A42A40B9D3008FB01C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145E69A12A40B9D3008FB01C /* RegisterViewController.swift */; };
 		145E69A62A44CBCC008FB01C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */; };
 		14645F362AAA102100CD55A5 /* ProblemsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */; };
-		14658C272A9DEC28000B443B /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14658C262A9DEC28000B443B /* StorageManager.swift */; };
 		1498E2A02AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
 		1498E2A12AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
 		1498E2A22AA1FB8F002A7EBB /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */; };
@@ -96,7 +95,6 @@
 		145E69A12A40B9D3008FB01C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		145E69A52A44CBCC008FB01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14645F352AAA102100CD55A5 /* ProblemsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemsTableViewController.swift; sourceTree = "<group>"; };
-		14658C262A9DEC28000B443B /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		1498E29F2AA1FB8F002A7EBB /* NewProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectVC.swift; sourceTree = "<group>"; };
 		1498E2A32AA2015D002A7EBB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		14A23F092A5EC68500A9EB6A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 			children = (
 				145E695F2A40B876008FB01C /* AppDelegate.swift */,
 				145E69612A40B876008FB01C /* SceneDelegate.swift */,
-				14658C262A9DEC28000B443B /* StorageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -586,7 +583,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14658C272A9DEC28000B443B /* StorageManager.swift in Sources */,
 				14123BF52AFE513200C07F23 /* ProjectsRepository.swift in Sources */,
 				145E699E2A40B9C9008FB01C /* LoginViewController.swift in Sources */,
 				143FB9CA2A8D09B900D432D8 /* ProfilViewController.swift in Sources */,

@@ -50,7 +50,7 @@ class PlacesTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedCell
         cell.userLabel.text = "Enginner: \(project.engineer!)"
-        cell.structureNameLabel.text = "Project \(project.structureName!)"
+        cell.structureNameLabel.text = "\(project.structureName!)"
         cell.structureTypeLabel.text = "\(project.structureType!)"
         cell.userImageView.sd_setImage(with: URL(string: project.imageUrl!))
         cell.documentIdLabel.text = project.documentId
