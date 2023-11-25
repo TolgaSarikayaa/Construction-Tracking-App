@@ -46,6 +46,18 @@ class ProblemFeedTableViewController: UITableViewController {
         
     }
     
+    // MARK: - Funtions
+    private func doneButtonConfiguration(for problemCell: ProblemCell) -> UICellAccessory.CustomViewConfiguration {
+        let symbolName = problemCell.isComplete ? "circle.fill" : "circle"
+        let symbolConfiguration = UIImage.SymbolConfiguration(textStyle: .title1)
+        let image = UIImage(systemName: symbolName, withConfiguration: symbolConfiguration)
+        let button = UIButton()
+            button.setImage(image, for: .normal)
+            return UICellAccessory.CustomViewConfiguration(
+            customView: button, placement: .leading(displayed: .always))
+    }
+    
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return problemList.count
@@ -53,6 +65,7 @@ class ProblemFeedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let problem = problemList[indexPath.row]
+        
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ProblemCell
         cell.projectPersonLabel.text = "Engineer: \(problem.projectEngineer!)"
@@ -66,12 +79,11 @@ class ProblemFeedTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath as IndexPath)  {
-         
-         if cell.accessoryType == .checkmark {
-         cell.accessoryType = .none
-         } else {
-         cell.accessoryType = .checkmark
-        }
+            guard cell.accessoryType != .checkmark else {
+                cell.accessoryType = .none
+                return
+            }
+            cell.accessoryType = .checkmark
       }
     }
         

@@ -10,6 +10,7 @@ import FirebaseAuth
 import JGProgressHUD
 import FirebaseDatabase
 import FirebaseFirestore
+import FirebaseStorage
 
 class RegisterViewController: UIViewController {
     
@@ -198,13 +199,49 @@ class RegisterViewController: UIViewController {
                 print("Error creating user")
                 return
             }
-            let fireStore = Firestore.firestore()
-            let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!, "company" : self.companyNameField.text!] as [String : Any]
-            fireStore.collection("UserInfo").addDocument(data: userDictionary) { (error) in
-                if error != nil {
-                }
+            
+            guard let selectedImage = self.imageView.image,
+                  let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
+                return
             }
-            self.didTapRegister()
+            
+    let storageRef = Storage.storage().reference().child("profile_images/\(authResult!.user.uid).jpg")
+            storageRef.putData(imageData, metadata: nil) { _, error in
+                guard error == nil else {
+                    print("Firebase Storage error: \(error!.localizedDescription)")
+                    return
+                }
+                
+                storageRef.downloadURL { url, error in
+                    if error == nil {
+                        print(error?.localizedDescription ?? "Error")
+                    }
+                    let imageUrl = url?.absoluteString
+                    
+                    
+                    let fireStore = Firestore.firestore()
+                    
+                    fireStore.collection("UserInfo").whereField("username", isEqualTo: PlaceModel.sharedinstance.username!).getDocuments { (snapshot, error) in
+                        if error != nil {
+                            print(error?.localizedDescription ?? "Error")
+                        }
+                    }
+                    
+                    let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!, "company" : self.companyNameField.text!, "profileImageURL": imageUrl! ] as [String : Any]
+                    
+                    fireStore.collection("UserInfo").document(authResult!.user.uid).setData(userDictionary) { (error) in
+                        if error != nil {
+                            print("Firestore error: \(error!.localizedDescription)")
+                            return
+                        }
+                        self.didTapRegister()
+                    }
+                   
+                }
+                
+            }
+            
+           
         }
     }
     func alertUserLoginError(message: String = "Please enter all information to create a new account") {
@@ -267,6 +304,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate , UINavigation
         picker.dismiss(animated: true, completion: nil)
         guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
              return
+            
         }
         self.imageView.image = selectedImage
     }

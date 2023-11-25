@@ -8,6 +8,7 @@
 import UIKit
 
 class ProblemCell: UITableViewCell {
+    var isComplete: Bool = false
 
     // MARK: - UI Elemets
     @IBOutlet var projectPersonLabel: UILabel!
