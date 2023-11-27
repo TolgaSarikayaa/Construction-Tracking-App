@@ -178,17 +178,17 @@ class RegisterViewController: UIViewController {
         firstNameField.resignFirstResponder()
         lastNameField.resignFirstResponder()
         
-        guard 
-             let companyName = companyNameField.text,
-              let firstName = firstNameField.text,
-              let lastName = lastNameField.text,
-              let email = emailField.text, let password = passwordField.text,
-              !email.isEmpty, !password.isEmpty,
-              !companyName.isEmpty,
-              !firstName.isEmpty,
-              !lastName.isEmpty,
-              password.count >= 6 else {
-              alertUserLoginError()
+        guard
+            let companyName = companyNameField.text,
+            let firstName = firstNameField.text,
+            let lastName = lastNameField.text,
+            let email = emailField.text, let password = passwordField.text,
+            !email.isEmpty, !password.isEmpty,
+            !companyName.isEmpty,
+            !firstName.isEmpty,
+            !lastName.isEmpty,
+            password.count >= 6 else {
+            alertUserLoginError()
             return
         }
         spinner.show(in: view)
@@ -200,50 +200,58 @@ class RegisterViewController: UIViewController {
                 return
             }
             
-            guard let selectedImage = self.imageView.image,
-                  let imageData = selectedImage.jpegData(compressionQuality: 0.5) else {
-                return
-            }
+            let storage = Storage.storage()
+            let storageReference = storage.reference()
             
-    let storageRef = Storage.storage().reference().child("profile_images/\(authResult!.user.uid).jpg")
-            storageRef.putData(imageData, metadata: nil) { _, error in
-                guard error == nil else {
-                    print("Firebase Storage error: \(error!.localizedDescription)")
-                    return
-                }
+            let mediaFolder = storageReference.child("profile_images")
+            
+            if let data = self.imageView.image?.jpegData(compressionQuality: 0.5) {
                 
-                storageRef.downloadURL { url, error in
-                    if error == nil {
-                        print(error?.localizedDescription ?? "Error")
-                    }
-                    let imageUrl = url?.absoluteString
-                    
-                    
-                    let fireStore = Firestore.firestore()
-                    
-                    fireStore.collection("UserInfo").whereField("username", isEqualTo: PlaceModel.sharedinstance.username!).getDocuments { (snapshot, error) in
-                        if error != nil {
-                            print(error?.localizedDescription ?? "Error")
+                let uuid = UUID().uuidString
+                
+                let imageReference = mediaFolder.child("\(uuid).jpg")
+                
+                imageReference.putData(data, metadata: nil) { (metadata, error) in
+                    if error != nil {
+                        print(error?.localizedDescription ?? "error")
+                    } else {
+                        imageReference.downloadURL { url, error in
+                            if error == nil {
+                                let imageUrl = url?.absoluteString
+                                
+                                // FireStore
+                                let fireStore = Firestore.firestore()
+                                
+                            
+                                    
+                                    let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!, "company" : self.companyNameField.text!, "profileImageURL": imageUrl! ] as [String : Any]
+                                    
+                                    fireStore.collection("UserInfo").addDocument(data: userDictionary) { (error) in
+                                        if error != nil {
+                                            print("Firestore error: \(error!.localizedDescription)")
+                                            return
+                                        }
+                                        
+                                    }
+
+                                }
+                                    self.didTapRegister()
+                           
+                            }
+                        
+                           
                         }
+                        
+                        
                     }
                     
-                    let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!, "company" : self.companyNameField.text!, "profileImageURL": imageUrl! ] as [String : Any]
-                    
-                    fireStore.collection("UserInfo").document(authResult!.user.uid).setData(userDictionary) { (error) in
-                        if error != nil {
-                            print("Firestore error: \(error!.localizedDescription)")
-                            return
-                        }
-                        self.didTapRegister()
-                    }
+                }
                    
-                }
-                
             }
-            
-           
         }
-    }
+    
+    
+    
     func alertUserLoginError(message: String = "Please enter all information to create a new account") {
         let alert = UIAlertController(title: "Woops",
                                       message: message,

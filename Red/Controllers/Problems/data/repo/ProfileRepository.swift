@@ -18,7 +18,7 @@ class ProfileRepository {
     func getData() {
         var list = [User]()
         
-        if let currentUser = Auth.auth().currentUser {
+       
             collectionProjects.collection("UserInfo").getDocuments { (snapshot, error) in
                 if let error = error {
                     print(error.localizedDescription )
@@ -46,10 +46,9 @@ class ProfileRepository {
                 }
             }
             
-        } else {
-            print("User image is nil")
         }
-        
     }
+
     
-}
+    
+

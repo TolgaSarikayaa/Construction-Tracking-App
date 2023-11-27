@@ -8,6 +8,8 @@
 import Foundation
 
 class User  {
+    static let sharedinstance = User()
+    
     var company: String?
     var username: String?
     var email: String?

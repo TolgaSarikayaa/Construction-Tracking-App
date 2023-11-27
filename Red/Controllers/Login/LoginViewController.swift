@@ -10,6 +10,7 @@ import FirebaseAuth
 import JGProgressHUD
 
 class LoginViewController: UIViewController {
+    let viewModel = ProfilViewModel()
     
     private let spinner = JGProgressHUD(style: .dark)
 
@@ -116,13 +117,16 @@ class LoginViewController: UIViewController {
         }
         performSegue(withIdentifier: "AddPlace", sender: nil)
         spinner.show(in: view)
+        
         // Firebase Log In
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let strongSelf = self else {
                 return
             }
+           
             DispatchQueue.main.async {
                 strongSelf.spinner.dismiss()
+             
             }
         }
     }

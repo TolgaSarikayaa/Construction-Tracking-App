@@ -76,24 +76,20 @@ class ProfilViewController: UIViewController {
         
         viewModel.userList.subscribe { [weak self] userList in
             guard let self = self else { return }
-            if let currentUser = Auth.auth().currentUser {
-                   let currentUserID = currentUser.uid
-                   if let user = userList.first(where: { $0.documentId == currentUserID }) {
-                       // Kullanıcı bilgilerini güncelle
-                       self.imageView.sd_setImage(with: URL(string: user.profileImageURL!), completed: nil)
-                       self.userName.text = user.username
-                       self.company.text = user.company
-                       self.email.text = user.email
-                   }
-               }
-           }
+
+           
+                for user in userList {
+                  
+                        self.imageView.sd_setImage(with: URL(string: user.profileImageURL!), completed: nil)
+                        self.userName.text = "User: \(user.username!)"
+                        self.company.text = "Company: \(user.company!)"
+                        self.email.text = "Email: \(user.email!)"
+                       
+                    }
+                
+            }
         
-        
-    
-            
-            
-        
-        
+           
 
         logOutButton.addTarget(self, action: #selector(logOutButtonTapped), for: .touchUpInside)
         
@@ -105,11 +101,9 @@ class ProfilViewController: UIViewController {
         scrollView.addSubview(imageView)
         scrollView.addSubview(logOutButton)
         
-       
-        
-      
-        
     }
+    
+   
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -125,6 +119,13 @@ class ProfilViewController: UIViewController {
         logOutButton.frame = CGRect(x: 30, y: email.bottom+20, width: scrollView.width-60, height: 52)
     }
     
+    func updateUserInformation(user: User) {
+        self.imageView.sd_setImage(with: URL(string: user.profileImageURL!), completed: nil)
+        self.userName.text = "User: \(user.username!)"
+        self.company.text = "Company: \(user.company!)"
+        self.email.text = "Email: \(user.email!)"
+    }
+    
    
     
 
@@ -133,6 +134,8 @@ class ProfilViewController: UIViewController {
     @objc func logOutButtonTapped() {
         do {
             try Auth.auth().signOut()
+            viewModel.userRepo.userList.onCompleted()
+             userList = []
             self.performSegue(withIdentifier: "toLoginVC", sender: nil)
         } catch {
             print("Error")

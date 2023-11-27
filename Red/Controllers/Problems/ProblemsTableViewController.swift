@@ -71,8 +71,7 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                     
                     imageReference.putData(data, metadata: nil) { (metadata, error) in
                         if error != nil {
-                            let alert = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
-                            self.present(alert, animated: false)
+                            print(error?.localizedDescription ?? "Error")
                         } else {
                             imageReference.downloadURL { (url, error) in
                                 if error == nil {
@@ -83,14 +82,14 @@ class ProblemsTableViewController: UITableViewController, UIImagePickerControlle
                                     
                                     fireStore.collection("Problems").whereField("User", isEqualTo: PlaceModel.sharedinstance.username!).getDocuments { (snapshot, error) in
                                         if error != nil {
-                                            _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                            print(error?.localizedDescription ?? "Error")
                                         }
                                     }
                                     let firestoreProb = ["image": imageUrl!, "User": PlaceModel.sharedinstance.username!, "mistake": self.mistakeText.text!, "date": FieldValue.serverTimestamp(), "person": self.personText.text!] as [String : Any]
                                     
                                     fireStore.collection("Problems").addDocument(data: firestoreProb) { (error) in
                                         if error != nil {
-                                            _ = UIAlertController.Alert(title: "Error", message: error?.localizedDescription ?? "Error")
+                                            print(error?.localizedDescription ?? "Error")
                                         } else {
                                             DispatchQueue.main.async {
                                                 self.spinner.dismiss()
