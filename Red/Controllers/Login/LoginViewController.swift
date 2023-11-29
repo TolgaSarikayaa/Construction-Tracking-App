@@ -115,19 +115,18 @@ class LoginViewController: UIViewController {
             
             return
         }
-        performSegue(withIdentifier: "AddPlace", sender: nil)
-        spinner.show(in: view)
+       
+        
         
         // Firebase Log In
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let strongSelf = self else {
-                return
+       Auth.auth().signIn(withEmail: email, password: password) {  authResult, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.performSegue(withIdentifier: "AddPlace", sender: nil)
+               
             }
            
-            DispatchQueue.main.async {
-                strongSelf.spinner.dismiss()
-             
-            }
         }
     }
         

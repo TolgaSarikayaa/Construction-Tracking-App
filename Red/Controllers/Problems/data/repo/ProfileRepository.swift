@@ -15,38 +15,31 @@ class ProfileRepository {
     var userList = BehaviorSubject<[User]>(value: [User]())
     var collectionProjects = Firestore.firestore()
     
-    func getData() {
+    func getData(forUID uid: String) {
         var list = [User]()
-        
-       
-            collectionProjects.collection("UserInfo").getDocuments { (snapshot, error) in
-                if let error = error {
-                    print(error.localizedDescription )
-                } else {
-                    guard let snapshot = snapshot else {
-                        print("Snapshot is empty")
-                        return
-                    }
-                    for document in snapshot.documents {
-                        
-                        let data = document.data()
-                        
-                        let id = document.documentID
-                        let image = data["profileImageURL"] as? String ?? ""
-                        let userName = data["username"] as? String ?? ""
-                        let company = data["company"] as? String ?? ""
-                        let email = data["email"] as? String ?? ""
-                        
-                        let user = User(company: company, username: userName, email: email, profileImageURL: image, documentId: id)
-                        list.append(user)
-                        
-                    }
-                    self.userList.onNext(list)
-                    
-                }
+
+        collectionProjects.collection("UserInfo").document(uid).getDocument { (document, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let document = document, document.exists {
+                let data = document.data()
+
+                let id = document.documentID
+                let image = data?["profileImageURL"] as? String ?? ""
+                let userName = data?["username"] as? String ?? ""
+                let company = data?["company"] as? String ?? ""
+                let email = data?["email"] as? String ?? ""
+
+                let user = User(company: company, username: userName, email: email, profileImageURL: image, documentId: id)
+                list.append(user)
+
+                self.userList.onNext(list)
+            } else {
+                print("Document does not exist")
             }
-            
         }
+    }
+
     }
 
     

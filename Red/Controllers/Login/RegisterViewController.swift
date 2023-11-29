@@ -222,20 +222,28 @@ class RegisterViewController: UIViewController {
                                 // FireStore
                                 let fireStore = Firestore.firestore()
                                 
+                                guard let currentUser = FirebaseAuth.Auth.auth().currentUser else {
+                                      print("No current user")
+                                      return
+                                  }
+                                
+                                let userUID = currentUser.uid
                             
                                     
                                     let userDictionary = ["email": self.emailField.text!, "username": self.firstNameField.text!, "company" : self.companyNameField.text!, "profileImageURL": imageUrl! ] as [String : Any]
                                     
-                                    fireStore.collection("UserInfo").addDocument(data: userDictionary) { (error) in
-                                        if error != nil {
-                                            print("Firestore error: \(error!.localizedDescription)")
-                                            return
+                                fireStore.collection("UserInfo").document(userUID).setData(userDictionary) { error in
+                                        if let error = error {
+                                        print("Firestore error: \(error.localizedDescription)")
+                                         return
                                         }
+                                    
+                                          self.didTapRegister()
                                         
                                     }
 
                                 }
-                                    self.didTapRegister()
+                                    
                            
                             }
                         

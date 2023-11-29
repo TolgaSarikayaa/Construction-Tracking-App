@@ -72,7 +72,7 @@ class ProfilViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+       // viewModel.getUser()
         
         viewModel.userList.subscribe { [weak self] userList in
             guard let self = self else { return }
@@ -134,8 +134,6 @@ class ProfilViewController: UIViewController {
     @objc func logOutButtonTapped() {
         do {
             try Auth.auth().signOut()
-            viewModel.userRepo.userList.onCompleted()
-             userList = []
             self.performSegue(withIdentifier: "toLoginVC", sender: nil)
         } catch {
             print("Error")

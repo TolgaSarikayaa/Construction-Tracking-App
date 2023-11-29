@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import FirebaseAuth
 
 class ProfilViewModel {
     var userRepo = ProfileRepository()
@@ -18,7 +19,9 @@ class ProfilViewModel {
     }
     
     func getUser() {
-        userRepo.getData()
+        if let currentUserUID = Auth.auth().currentUser?.uid {
+                    userRepo.getData(forUID: currentUserUID)
+        }
     }
     
 }
