@@ -31,4 +31,6 @@ This iOS application serves as a comprehensive tool for construction companies, 
 - **MVVM (Model-View-ViewModel):** Utilizes the MVVM design pattern to separate business logic from the UI layer, enhancing maintainability and testability.
 ![Red](https://github.com/TolgaSarikayaa/Construction-Tracking-App/assets/113526329/d5aa0806-880f-4d1c-81ab-6ab6695a4526)
 ![Red2](https://github.com/TolgaSarikayaa/Construction-Tracking-App/assets/113526329/4ed62c71-8632-4968-8798-f3c272909a0e)
+![IMG_6586 1](https://github.com/TolgaSarikayaa/Construction-Tracking-App/assets/113526329/a246f589-e570-42d7-944a-49dacc8ede2f)
+
 
