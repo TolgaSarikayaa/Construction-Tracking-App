@@ -30,6 +30,7 @@ class ProfilViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .gray
         imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
@@ -110,9 +111,9 @@ class ProfilViewController: UIViewController {
         
         scrollView.frame = view.bounds
         let size = scrollView.width/3
-        
-        imageView.frame = CGRect(x: (scrollView.width-size)/2, y: 120, width: size, height: size)
-        imageView.layer.cornerRadius = imageView.width/2.0
+        let imageSize : CGFloat = 150
+        imageView.frame = CGRect(x: (scrollView.width - imageSize)/2, y: 120, width: imageSize, height: imageSize)
+        imageView.layer.cornerRadius = imageSize / 2
         userName.frame = CGRect(x: 30, y: imageView.bottom+20, width: scrollView.width-60, height: 52)
         company.frame = CGRect(x: 30, y: userName.bottom+20, width: scrollView.width-60, height: 52)
         email.frame = CGRect(x: 30, y: company.bottom+20, width: scrollView.width-60, height: 52)
